@@ -1,0 +1,73 @@
+create database tiendaOnline
+use tiendaOnline;
+
+create table Producto (
+codigoBarras int auto_increment primary key,
+idProducto int,
+nombreProducto varchar(30),
+cantidadaProducto int
+);
+
+create table Usuario (
+idUsuario int primary key,
+nombreUsuario varchar (30),
+rolUsuario varchar(30)
+);
+
+create table Cliente(
+idCliente int primary key auto_increment,
+nombreCliente varchar (30),
+fechaNacieminto date
+);
+
+create table Venta (
+idVenta int auto_increment primary key,
+numOrden int,
+precioVenta int,
+idClienteFK int,
+idUsuarioFK int 
+);
+
+create table producto_Venta(
+codigoBarrasFK int,
+idVentaFK int,
+cantidad int,
+total int 
+);
+
+alter table  producto_Venta
+add constraint FKproducto 
+foreign key (codigoBarrasFK)
+references Producto(codigoBarras);
+
+alter table  producto_Venta
+add constraint FKventa
+foreign key (idVentaFK)
+references Venta(idVenta);
+
+alter table  Venta
+add constraint FKcliente
+foreign key (idClienteFK)
+references Cliente(idCliente);
+
+alter table  Venta
+add constraint FKusuario
+foreign key (idUsuarioFK)
+references Usuario(idUsuario);
+
+describe  Producto;
+insert into Producto values (1798, 3758, "JabónOso", 80), (2242, 8467, "Lavayuls", 21), (4472, 4070, "Creatina", 56), (5064, 3259, "Sanson", 5);
+
+describe  Usuario;
+insert into Usuario values (1111, "Maluma", "Repartido"), (2222, "Rupatrupa", "Analista"), (3333, "Shakira", "Manager"), (4444, "Bad Bunny", "CEO")
+
+describe  Cliente;
+insert into Cliente values (1, "Camilo", 11-08-2000), (2, "Carin", 27-03-1997), (3, "Sarah", 11-11-2006), (4, "Pedro", 30-12-1995) 
+
+describe  Venta;
+insert into Venta values (2, 1, 10000, 1, 1111), (4, 2, 7500, 2, 2222), (6, 3, 3000, 3, 3333), (8, 4, 28700, 4, 4444)
+
+describe  producto_Venta;
+insert into producto_Venta values (1798, 2, 8, 24700), (2242, 4, 1, 3000), (4472, 6, 20, 240000), (5064, 8, 15, 560000)
+
+select nombreProducto as "Producto" from Producto
