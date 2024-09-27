@@ -1,73 +1,119 @@
-create database tiendaOnline
-use tiendaOnline;
-
-create table Producto (
-codigoBarras int auto_increment primary key,
-idProducto int,
-nombreProducto varchar(30),
-cantidadaProducto int
+CREATE DATABASE Tienda_Online;
+USE Tienda_Online;
+CREATE TABLE Producto (
+    codigoBarras INT AUTO_INCREMENT PRIMARY KEY,
+    nombreProducto VARCHAR(50),
+    categoriaProducto VARCHAR(50),
+    precioProducto DECIMAL(10, 2),
+    cantidadProducto INT
 );
 
-create table Usuario (
-idUsuario int primary key,
-nombreUsuario varchar (30),
-rolUsuario varchar(30)
+CREATE TABLE Usuario (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombreUsuario VARCHAR(50),
+    rolUsuario VARCHAR(50)
 );
 
-create table Cliente(
-idCliente int primary key auto_increment,
-nombreCliente varchar (30),
-fechaNacieminto date
+CREATE TABLE Cliente (
+    idCliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombreCliente VARCHAR(50),
+    fechaNacimiento DATE
 );
 
-create table Venta (
-idVenta int auto_increment primary key,
-numOrden int,
-precioVenta int,
-idClienteFK int,
-idUsuarioFK int 
+CREATE TABLE Venta (
+    idVenta INT AUTO_INCREMENT PRIMARY KEY,
+    fechaVenta DATE,
+    totalVenta DECIMAL(10, 2),
+    idClienteFK INT,
+    idUsuarioFK INT,
+    
+    CONSTRAINT FK_Cliente_Venta FOREIGN KEY (idClienteFK) REFERENCES Cliente(idCliente),
+    CONSTRAINT FK_Usuario_Venta FOREIGN KEY (idUsuarioFK) REFERENCES Usuario(idUsuario)
 );
+CREATE TABLE DetalleVenta (
+    idDetalleVenta INT AUTO_INCREMENT PRIMARY KEY,
+    idVentaFK INT,
+    idProductoFK INT,
+    cantidad INT,
+    precioUnitario DECIMAL(10, 2),
 
-create table producto_Venta(
-codigoBarrasFK int,
-idVentaFK int,
-cantidad int,
-total int 
+    CONSTRAINT FK_Venta_Detalle FOREIGN KEY (idVentaFK) REFERENCES Venta(idVenta),
+    CONSTRAINT FK_Producto_Detalle FOREIGN KEY (idProductoFK) REFERENCES Producto(codigoBarras)
 );
+INSERT INTO Producto (nombreProducto, categoriaProducto, precioProducto, cantidadProducto)
+VALUES
+('Producto 1', 'Categoria 1', 10000, 5),
+('Producto 2', 'Categoria 1', 18000, 3),
+('Producto 3', 'Categoria 2', 25000, 1),
+('Producto 4', 'Categoria 3', 50000, 2);
+INSERT INTO Cliente (nombreCliente, fechaNacimiento)
+VALUES
+('Fantasm', '2002-05-13'),
+('Hades', '2002-02-13'),
+('Baswell', '2002-10-13'),
+('Daniel', '2002-01-13');
 
-alter table  producto_Venta
-add constraint FKproducto 
-foreign key (codigoBarrasFK)
-references Producto(codigoBarras);
+INSERT INTO Usuario (nombreUsuario, rolUsuario)
+VALUES
+('Maluma Cajero', 'Cajero'),
+('Anuel Administrador', 'Administrador'),
+('Ozuna Secretario', 'Secretario'),
+('Prince Ejecutivo', 'Ejecutivo');
 
-alter table  producto_Venta
-add constraint FKventa
-foreign key (idVentaFK)
-references Venta(idVenta);
+INSERT INTO Venta (fechaVenta, totalVenta, idClienteFK, idUsuarioFK)
+VALUES
+('2024-05-10', 50000, 1, 1),
+('2024-06-15', 30000, 2, 2),
+('2024-07-20', 25000, 3, 3),
+('2024-08-25', 18000, 4, 4);
+INSERT INTO DetalleVenta (idVentaFK, idProductoFK, cantidad, precioUnitario)
+VALUES
+(1, 1, 2, 10000),
+(2, 2, 1, 18000),
+(3, 3, 1, 25000),
+(4, 4, 1, 50000);
 
-alter table  Venta
-add constraint FKcliente
-foreign key (idClienteFK)
-references Cliente(idCliente);
 
-alter table  Venta
-add constraint FKusuario
-foreign key (idUsuarioFK)
-references Usuario(idUsuario);
+SELECT * FROM Producto;
+SELECT * FROM Producto ORDER BY precioProducto ASC;
 
-describe  Producto;
-insert into Producto values (1798, 3758, "JabónOso", 80), (2242, 8467, "Lavayuls", 21), (4472, 4070, "Creatina", 56), (5064, 3259, "Sanson", 5);
+SELECT * FROM Cliente WHERE MONTH(fechaNacimiento) = 1;
 
-describe  Usuario;
-insert into Usuario values (1111, "Maluma", "Repartido"), (2222, "Rupatrupa", "Analista"), (3333, "Shakira", "Manager"), (4444, "Bad Bunny", "CEO")
+SELECT * FROM Usuario WHERE rolUsuario = 'Cajero' OR rolUsuario = 'Secretario';
 
-describe  Cliente;
-insert into Cliente values (1, "Camilo", 11-08-2000), (2, "Carin", 27-03-1997), (3, "Sarah", 11-11-2006), (4, "Pedro", 30-12-1995) 
+SELECT * FROM Venta WHERE MONTH(fechaVenta) BETWEEN 3 AND 6;
 
-describe  Venta;
-insert into Venta values (2, 1, 10000, 1, 1111), (4, 2, 7500, 2, 2222), (6, 3, 3000, 3, 3333), (8, 4, 28700, 4, 4444)
+SELECT * FROM Producto WHERE nombreProducto LIKE '%r%';
 
-describe  producto_Venta;
-insert into producto_Venta values (1798, 2, 8, 24700), (2242, 4, 1, 3000), (4472, 6, 20, 240000), (5064, 8, 15, 560000)
+SELECT * FROM Venta v
+JOIN DetalleVenta dv ON v.idVenta = dv.idVentaFK
+JOIN Producto p ON dv.idProductoFK = p.codigoBarras
+WHERE p.precioProducto BETWEEN 15000 AND 30000;
+   
+SELECT * FROM Producto;
+INSERT INTO Producto (nombreProducto, categoriaProducto, precioProducto, cantidadProducto)
+VALUES
+('Ropa de bebé', 'Categoria 1', 25000, 5);
 
-select nombreProducto as "Producto" from Producto
+SELECT * FROM Cliente;
+
+ALTER TABLE Cliente 
+ADD direccionCliente varchar(50);
+
+ALTER TABLE Cliente
+ADD telefonoCliente int(10);
+
+INSERT INTO Cliente(idCliente, nombreCliente, fechaNacimiento)
+	VALUES (55163118, 'Tatiana Cabrera', '1985-11-24' );
+
+UPDATE Cliente 
+SET fechaNacimiento = '1985-11-24', direccionCliente = 'Calle 104 #13-14', telefonoCliente = 3144606918
+WHERE idCliente =55163118;
+
+ALTER TABLE Venta
+ADD productosComprados varchar(50);
+
+SELECT * FROM Venta;
+INSERT INTO VENTA (idVenta, fechaVenta, idClienteFK, idUsuarioFK, productosComprados)
+VALUES ('5', '2024-09-27', 55163118, 2, 'Ropa de bebé');
+
