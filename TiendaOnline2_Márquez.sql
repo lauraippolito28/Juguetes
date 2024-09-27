@@ -53,14 +53,14 @@ foreign key (idUsuarioFK)
 references Usuario(idUsuario);
 
 alter table Producto_Venta
-add constraint FKVentaUsuario
-foreign key (idVentaFK)
-references Venta(idVenta);
+add constraint FKProducto
+foreign key (idPoductoFK)
+references Producto(idProducto);
 
 alter table Producto_Venta
-add constraint FKVentacodBarras
-foreign key (codigoBarrasProductoFK)
-references Producto(numero);
+add constraint FKOrden
+foreign key (idOrdenFK)
+references Orden(idOrden);
 
 /*Punto 5*/
 describe Venta;
@@ -91,7 +91,6 @@ from Precio p
 inner join cliente c on p,idPrecio = c. idPrecioFK;
 
 /*Consultar el cliente de la máxima venta hecha*/
-
 select c.*, nombreCliente_TO, Venta.idCliente_TOFK, Producto_Venta.totalVentaFK
 from orden
 inner join Cliente_TO on Cliente_TO.idCliente_TO = venta.Cliente_TOFK
@@ -99,5 +98,20 @@ inner join Producto_Venta on venta.idVenta = Producto_Venta.idVentaFK
 where total = max(total)
 
 /*Consultar el usuario y cliente de una venta específica*/
+select Cliente_TO.nombreCliente_TO, Venta.idCliente_TOFK, Usuario.nombreUsuario
+fom Venta
+join Cliente_TO on Cliente_TO.idCliente_TO = Venta.idCliente_TOfk
+join Usuario on Usuario.idUsuario = Venta.idUsuariofk
+whwere Venta.idVenta = 111;
+
 /*Consultar los productos que compró un cliente específico*/
+select Producto.nombreProducto, Producto_Venta.cantidad, Producto_Venta.totalVenta
+from Producto_Venta
+join Venta on Producto_Venta.idVentaFK = Venta.idVenta
+join Producto on Producto_Venta.idProductoFK = Producto.idProducto
+where Venta.idCliente = 111;
+
 /*Consultar todos los clientes que han hecho compras*/
+select Cliente_TO.nombreCliente
+from Cliente_TO
+join Venta on Cliente_TO.idCliente_TO = Venta.idCliente_TO
