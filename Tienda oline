@@ -117,3 +117,93 @@ SELECT * FROM Venta;
 INSERT INTO VENTA (idVenta, fechaVenta, idClienteFK, idUsuarioFK, productosComprados)
 VALUES ('5', '2024-09-27', 55163118, 2, 'Ropa de bebé');
 
+delimiter //
+create procedure registrarProducto(codigoBarras int, nombreProducto varchar(50), precioProducto decimal (10, 2), categoriaProdcuto varchar (50), cantidadProducto int )
+begin
+insert into producto values (codigoBarras, nombreProducto, precioProducto, categoriaProducto, cantidadProducto);
+end //
+delimiter ;
+drop procedure registrarProducto;
+call registrarProducto( 5, "Producto 5", "Categoria 3", 5750, 7)
+
+select * from producto 
+
+/*Procedimienos almacenados(Almacenar información en la base datos)
+
+DELIMITER//
+create prodecure nombre procedimiento(parametros);
+begin
+	L+ogica de la sentencia a utilizar
+end
+
+DELIMITER;
+*/
+
+/*Inactivar cliente*/
+ALTER TABLE Cliente 
+ADD activo BOOLEAN DEFAULT TRUE;
+DELIMITER //
+CREATE PROCEDURE InactivarCliente(IN clienteID INT)
+BEGIN
+    UPDATE Cliente 
+    SET activo = FALSE
+    WHERE idCliente = clienteID;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE consultarProductosComprados(IN clienteID INT)
+BEGIN
+    SELECT p.nombreProducto, v.idVenta, v.fechaVenta
+    FROM Venta v
+    JOIN DetalleVenta dv ON v.idVenta = dv.idVentaFK
+    JOIN Producto p ON dv.idProductoFK = p.codigoBarras
+    WHERE v.idClienteFK = clienteID;
+END //
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE modificacionFechaNacimiento(IN clienteID INT, IN nuevaFecha DATE)
+BEGIN
+    UPDATE Cliente 
+    SET fechaNacimiento = nuevaFecha
+    WHERE idCliente = clienteID;
+END //
+DELIMITER ;
+
+CREATE VIEW vistaClienteProducto AS
+SELECT c.nombreCliente, p.nombreProducto, v.idVenta
+FROM Venta v
+JOIN DetalleVenta dv ON v.idVenta = dv.idVentaFK
+JOIN Producto p ON dv.idProductoFK = p.codigoBarras
+JOIN Cliente c ON v.idClienteFK = c.idCliente;
+
+
+
+CREATE VIEW vistaCompras_Cliente AS
+SELECT c.nombreCliente, COUNT(v.idVenta) AS totalCompras
+FROM Venta v
+JOIN Cliente c ON v.idClienteFK = c.idCliente
+GROUP BY c.nombreCliente
+ORDER BY totalCompras DESC
+LIMIT 1;
+
+/*Consultas dentro de otras consultas*/
+/*select campo2, campo3 from tablanegra
+where campo2 = (select columna2x from otra tabla where condicional)
+*/
+
+select * from producto
+
+select nombreProducto, precioProducto (select avg(precioProducto)
+ from Producto) as promedio
+ from Producto;
+ 
+ select nombreProducto, precioProducto (select avg(precioProducto)
+ from Producto) as promedio
+ from Producto;
+ 
+
