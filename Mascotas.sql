@@ -1,6 +1,6 @@
-/*Punto 1*/
-create database mascotas;
+create database mascotas; /*Punto 1*/
 use mascotas;
+
 /*Punto 2*/
 create table Cliente (
 cedulaCliente int (11) primary key, 
