@@ -127,8 +127,50 @@ update Cliente_TO set telefonoCliente_TO=3144606978 where idCliente_TO=4;
 update Cliente_TO set telefonoCliente_TO=3144606978 where idCliente_TO=4;
 insert into Cliente_TO values(55163118,1111812,'Tatiana Cabrera Vargas',3144606978,24/11/24);
 
-select * from Cliente_TO;
+select * from Producto;
 select * from venta;
 
 update Venta set idCliente_TOFK=55163118 where idVenta=49;
 delete from Cliente_TO where idCliente_TO=4;
+
+/*Prodecimientos almacenados: Subrutinas para almacenar la información en la base de datos
+delimiter; 
+create procedure nombre_procedimiento(parametros)
+begin
+lógica sentencia
+end
+*/
+
+delimiter //
+create procedure registrarProducto(idProducto int, codigoBarrasProducto varchar(50),nombreProducto varchar(50),cantidadProducto int, precioporProducto float)
+begin 
+insert into Producto values (idProducto,codigoBarrasProducto,nombreProducto,cantidadProducto,precioporProducto);
+end//
+delimiter ;
+call registrarProducto(55,'34435','Sticker',25,3000);
+describe producto;
+select * from Producto;
+
+delimiter //
+create procedure updateProducto(idProducto int, codigoBarrasProducto varchar(50),nombreProducto varchar(50),cantidadProducto int, precioporProducto float)
+begin 
+update Producto set
+nombreProducto=nuevonombre where idProducto=idProducto;
+end//
+delimiter ;
+call updateProducto(55,'34435','Calcomanias',25,3000);
+describe producto;
+select * from Producto;
+
+create view consultarCliente_TO as 
+select * from Cliente_TO;
+
+select * from consultarCliente_TO;
+
+/*Tarea modificar prodedimientos
+1.Inactivar un cliente
+2. Consultar los productos que ha comprado un cliente
+3. Modificar la fecha de nacimiento de Cliente
+Crear:
+1. Que cliente compróo un producto y cual fue su número de orden
+2. Lista que muestre el cliente que más compras haya hecho*/
