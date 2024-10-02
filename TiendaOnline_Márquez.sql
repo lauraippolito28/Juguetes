@@ -72,7 +72,7 @@ select * from Venta;
 select * from Cliente_TO;
 
 insert into Cliente_TO values('',1111112,'Luna',31056894,'Marzo'),(1,1111113,'Sofía',31056857,'Abril'),(2,11111879,'Diego',31057684,'Junio'),(3,1111114,'Camilo',31083684,'Julio');
-insert into Producto values('',1569,'Chaqueta azul',6,65.000),(11,6895,'Silla reclinable',25,186.000),(22,6384,'Libro de colorear',21,16.000),(33,0935,'Caja Chicles',110,3.200);
+insert into Producto values(01,1569,'Chaqueta azul',6,65.000),(11,6895,'Silla reclinable',25,186.000),(22,6384,'Libro de colorear',21,16.000),(33,0935,'Caja Chicles',110,3.200);
 insert into Usuario values('',659843,'Cajero',4,1),(111,364859,'Personal Bodega',2,6),(112,659843,'Cajero',6,3),(113,959334,'Administrador',1,9);
 insert into Venta values('',100,111,1,6384,65.000,'3-octubre'),(56,100,111,1,6384,65.000,'3-octubre');
 
@@ -168,9 +168,54 @@ select * from Cliente_TO;
 select * from consultarCliente_TO;
 
 /*Tarea modificar prodedimientos
-1.Inactivar un cliente
-2. Consultar los productos que ha comprado un cliente
-3. Modificar la fecha de nacimiento de Cliente
-Crear:
-1. Que cliente compróo un producto y cual fue su número de orden
-2. Lista que muestre el cliente que más compras haya hecho*/
+1.Inactivar un cliente*/
+alter table Cliente_TO 
+/*2. Consultar los productos que ha comprado un cliente*/
+select Producto.nombreProducto, Producto_Venta.cantidad, Producto_Venta.totalVentaFK
+from Producto_Venta
+join Venta on Producto_Venta.idVentaFK = Venta.idVenta
+join Producto on Producto_Venta.idProductoFK = Producto.idProducto
+where Venta.idCliente = 111;
+select * from Producto;
+/*3. Modificar la fecha de nacimiento de Cliente*/
+update Cliente_TO set fechaNacimiento=18/03/1996 where idCliente_TO=4;
+/*Crear:
+1. Que cliente compró un producto y cual fue su número de orden*/
+delimiter //
+create procedure registrarProducto(idProducto int, codigoBarrasProducto varchar(50),nombreProducto varchar(50),cantidadProducto int, precioporProducto float)
+begin 
+insert into Producto values (idProducto,codigoBarrasProducto,nombreProducto,cantidadProducto,precioporProducto);
+end//
+delimiter ;
+/*2. Lista que muestre el cliente que más compras haya hecho*/
+delimiter //
+create procedure registrarProducto(idProducto int, codigoBarrasProducto varchar(50),nombreProducto varchar(50),cantidadProducto int, precioporProducto float)
+begin 
+insert into Producto values (idProducto,codigoBarrasProducto,nombreProducto,cantidadProducto,precioporProducto);
+end//
+delimiter ;
+call registrarProducto(55,'34435','Sticker',25,3000);
+describe producto;
+select * from Producto;
+
+/*Subconsultas: consultas anidadas dentro de otra consulta
+select campo2, campo3 from tablaGrande
+where campo2 = (select columnsa2x from tablaPequeña where condición);*/
+
+/* Consultar los datos de los empleados ys su sueldo promedio */
+select nombreEmpleado, idEmpleado, salarioEmpleado, (select avg(salario) from empleado) as promedio from empleado;
+
+/* Consultar empleado con salario mayor que el promedio*/
+select nombreEmpleado, idEmpleado, salarioEmpleado from empleado where salarioEmpleado>(select avg(salario) from empleado);
+
+/* Consultar el area a la que pertenece un empleado*/
+select nombreEmpleado, idEmpleado, idArea, nombreArea from empleado where idArea in (select idArea from area where nombreEmpleado='Luna');
+
+/*Consultar los productos que se vendan a un precio mayor que el del promedio*/
+select nombreProducto, idProducto, precioporProducto from Producto where precioporProducto>(select avg(precioporProducto) from Producto);
+select * from producto;
+
+/*Mostrar los clientes que el total de compra sea mayor que el del promedio*/
+select nombreCliente_TO, idCliente_TO from Cliente_TO where salarioEmpleado>(select avg(salario) from empleado);
+
+/*Mostrar el promedio de precios de productos comprados por un cliente*/
