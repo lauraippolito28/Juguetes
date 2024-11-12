@@ -57,7 +57,7 @@ db.usuarios.find({age:{$gte: '30'}})
   age: '35',
   mail: 'luis.torres@urosario.com'
 }
-db.usuarios.update({'name':'Juan Perez'},{$set:{'age':'31'}})
+db.usuarios.updateOne({ name: "Juan Pérez" }, { $set: { age: 31 } })
 DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
 {
   acknowledged: true,
@@ -66,7 +66,8 @@ DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany
   modifiedCount: 0,
   upsertedCount: 0
 }
-db.usuarios.deleteOne({'_id':ObjectId('672e0ddd4dd462fa1f51350b')})
+db.usuarios.updateMany({ edad: { $gte: 30 } }, { $set: { activo: true } })
+db.usuarios.deleteOne({ nombre: "Luis Torres" })
 {
   acknowledged: true,
   deletedCount: 1
