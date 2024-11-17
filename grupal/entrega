@@ -1,0 +1,459 @@
+create database elColibri;
+use elColibri;
+
+create table empleado (
+    cedulaEmpleado int primary key,
+    nombreEmpleado varchar(30),
+    apellidoEmpleado varchar(30),
+    correoElectronicoEmpleado varchar(60) not null,
+    telefonoEmpleado varchar(15),
+    direccionEmpleado varchar(40),
+    cargoEmpleado enum('CEO', 'Administrador', 'Supervisor', 'Vendedor') not null,
+    fechaEntradaEmpleado date,
+    salarioEmpleado decimal(10, 2),
+    estadoEmpleado enum('Activo', 'Inactivo', 'Licencia', 'Despedido') default 'Activo',
+    fechaNacimientoEmpleado date,
+    generoEmpleado enum('Masculino', 'Femenino')
+);
+
+create table cliente (
+    cedulaCliente int primary key,
+    nombreCliente varchar(30),
+    apellidoCliente varchar(30),
+    correoElectronico varchar(50),
+    telefonoCliente varchar(10),
+    fechaRegistroCliente date,
+    tipoCliente enum("Minorista", "Mayorista") default "Minorista",
+    fechaNacimientoCliente date,
+    generoCliente varchar(10),
+    estadoCliente enum('Activo', 'Inactivo') not null
+);
+
+create table proveedor (
+    idProveedor int primary key auto_increment,
+    nombreProveedor varchar(50),
+    contactoNombreProveedor varchar(30),
+    correoElectronicoProveedor varchar(60) not null,
+    telefonoProveedor varchar(15),
+    direccionProveedor varchar(100),
+    ciudadProveedor varchar(50),
+    fechaRegistro date,
+    estadoProveedor enum('Activo', 'Inactivo')
+);
+
+create table producto (
+    codigoProducto varchar(15) primary key,
+    nombreProducto varchar(25),
+    descripcionProducto varchar(100),
+    precioUnidadProducto int,
+    stockProducto int,
+    fechaEntrada date, 
+    idProveedorFK int,
+    precioEntrada int,
+    foreign key (idProveedorFK) references proveedor(idProveedor)
+);
+
+create table usuario (
+    idUsuario int primary key auto_increment,
+    cedulaEmpleadoFK int,
+    nombreUsuario varchar(30),
+    contraseñaUsuario varchar(15),
+    rolUsuario enum('CEO', 'Administrador', 'Supervisor', 'Vendedor') not null,
+    estadoUsuario enum('Activo', 'Inactivo') not null,
+    fechaCreacion date,
+    foreign key (cedulaEmpleadoFK) references empleado(cedulaEmpleado)
+);	
+
+create table venta (
+    idVenta int primary key auto_increment,
+    numeroVenta varchar(20) not null unique, 
+    idEmpleadoFK int,
+    idClienteFK int,
+    codigoProductoFK varchar(15),
+    cantidadVenta int,
+    precioUnitario float, 
+    totalVenta float,    
+    fechaVenta date,
+    metodoPago enum('Efectivo', 'Tarjeta', 'Transferencia'),
+    constraint fkVentaCliente foreign key (idClienteFK) references cliente(cedulaCliente),
+    constraint fkVentaEmpleado foreign key (idEmpleadoFK) references empleado(cedulaEmpleado),
+    constraint fkVentaProducto foreign key (codigoProductoFK) references producto(codigoProducto)
+);
+
+
+select * from empleado;
+describe empleado;
+insert into empleado (cedulaEmpleado, nombreEmpleado, apellidoEmpleado, correoElectronicoEmpleado, telefonoEmpleado, direccionEmpleado, cargoEmpleado, fechaEntradaEmpleado, salarioEmpleado, estadoEmpleado, fechaNacimientoEmpleado, generoEmpleado) values
+("79485725", "Mauricio", "Bermúdez", "mauber@gmail.com", "3114868659", "Calle 69d #105f - 88", "CEO", "2020-08-20", "3000000", "Activo", "1969-05-01", "Masculino"),
+("52883378",  "Diana", "Tabares", "dianazu81@hotmail.com", "3115518114", "Calle 69d #105f - 88", "Administrador", "2020-08-20", "2250000", "Activo", "1989-09-08", "Femenino"),
+("1016954734", "Sarah", "Díaz", "sarahd@gmail.com", "3148273585", "Calle 69d #105f - 88", "Vendedor", "2023-12-01", "1300000", "Activo", "2007-11-11", "Femenino"),
+("1001316474", "Prince", "Bermúdez", "bermudezt2242@gmail.com", "3212020871", "Calle 69d #105f - 88", "Vendedor", "2020-08-20", "1300000", "Activo", "2003-04-22", "Masculino");
+
+select * from cliente;
+describe cliente;
+insert into cliente (cedulaCliente, nombreCliente, apellidoCliente, correoElectronico, telefonoCliente, fechaRegistroCliente, fechaNacimientoCliente, generoCliente, estadoCliente) values
+('345678912', 'Camilo', 'Díaz', 'camilod@gmail.com', '3161237890', '2023-07-20', '1992-09-16', 'Masculino', 'Activo'),
+('456789123', 'Angélica', 'Pérez', 'angelicap@gmail.com', '3179876542', '2023-07-20', '1988-11-04', 'Femenino', 'Activo'),
+('123476789', 'Juan', 'Pérez', 'juanp@gmail.com', '3148765432', '2024-07-20', '1985-03-15', 'Masculino', 'Activo'),
+('987254321', 'María', 'Gómez', 'mariag@gmail.com', '3129876543','2024-07-20', '1990-07-22', 'Femenino', 'Activo'),
+('456323789', 'Carlos', 'Rodríguez', 'carlosr@gmail.com', '3104567891', '2024-07-20', '1988-11-10', 'Masculino', 'Activo'),
+('328654987', 'Ana', 'López', 'anal@gmail.com', '3151234567', '2024-07-21', '1995-05-25', 'Femenino', 'Activo'),
+('664321789', 'Jorge', 'Martínez', 'jorgem@gmail.com', '3176543210', '2024-07-21', '1980-09-30', 'Masculino', 'Activo'),
+('789458123', 'Laura', 'Hernández', 'laurah@gmail.com', '3189876543', '2024-07-21', '1992-02-14', 'Femenino', 'Activo'),
+('159753786', 'Luis', 'García', 'luisg@gmail.com', '3191239876', '2024-07-21', '1987-06-05', 'Masculino', 'Activo'),
+('753159843', 'Sofía', 'Sánchez', 'sofias@gmail.com', '3143216789', '2024-07-25', '1993-08-20', 'Femenino', 'Activo'),
+('246813279', 'Diego', 'Ramírez', 'diegor@gmail.com', '3107891234', '2024-07-25', '1989-12-01', 'Masculino', 'Activo'),
+('369258347', 'Valentina', 'Castillo', 'valentinac@gmail.com', '3159871234', '2024-07-25', '1994-10-18', 'Femenino', 'Activo'),
+('135782468', 'Andrés', 'Mendoza', 'andresm@gmail.com', '3198765432', '2024-07-25', '1983-04-27', 'Masculino', 'Activo'),
+('246997531', 'Isabella', 'Rojas', 'isabellar@gmail.com', '3126549870', '2024-07-28', '1991-01-12', 'Femenino', 'Activo'),
+('363147258', 'Samuel', 'Jiménez', 'samuelj@gmail.com', '3141592653', '2024-07-28', '1986-11-23', 'Masculino', 'Activo'),
+('1457258369', 'Camila', 'Salazar', 'camilas@gmail.com', '3177531598', '2024-07-28', '1992-03-09', 'Femenino', 'Activo'),
+('258963147', 'Felipe', 'Vargas', 'felipev@gmail.com', '3182468135', '2024-07-28', '1984-07-15', 'Masculino', 'Activo'),
+('963752741', 'Natalia', 'Quintero', 'nataliaq@gmail.com', '3193214789', '2024-07-30', '1990-05-30', 'Femenino', 'Activo'),
+('159986753', 'Sebastián', 'Cárdenas', 'sebastianc@gmail.com', '3157896541', '2024-07-30', '1981-09-19', 'Masculino', 'Activo'),
+('753551852', 'Lucía', 'Morales', 'luciam@gmail.com', '3172589643', '2024-07-30', '1993-12-08', 'Femenino', 'Activo'),
+('951653468', 'Daniel', 'González', 'danielg@gmail.com', '3148765430', '2024-07-30', '1985-02-27', 'Masculino', 'Activo'),
+('159753258', 'Gabriela', 'Torres', 'gabrielat@gmail.com', '3186543219', '2024-08-01', '1989-10-03', 'Femenino', 'Activo'),
+('358159486', 'Manuel', 'Márquez', 'manuelm@gmail.com', '3101597538', '2024-08-01', '1980-06-21', 'Masculino', 'Activo'),
+('753236159', 'Diana', 'Mejía', 'dianam@gmail.com', '3197531864', '2024-08-01', '1995-01-15', 'Femenino', 'Activo'),
+('159258253', 'Hugo', 'Patiño', 'hugop@gmail.com', '3154567890', '2024-08-02', '1987-04-11', 'Masculino', 'Activo'),
+('258147361', 'Mariana', 'Salcedo', 'marianas@gmail.com', '3148529631', '2024-08-02', '1991-11-25', 'Femenino', 'Activo'),
+('951468733', 'Rafael', 'Rincón', 'rafaelr@gmail.com', '3171472580', '2024-08-02', '1983-08-13', 'Masculino', 'Activo'),
+('789456159', 'Pablo', 'Bermúdez', 'pablob@gmail.com', '3106543212', '2024-08-03', '1992-02-02', 'Masculino', 'Activo'),
+('321987454', 'Juliana', 'Cifuentes', 'julianac@gmail.com', '3191234560', '2024-08-07', '1988-10-30', 'Femenino', 'Activo'),
+('654789361', 'Nicolás', 'Tovar', 'nicolast@gmail.com', '3157891230', '2024-08-07', '1984-05-19', 'Masculino', 'Activo'),
+('456123680', 'Esteban', 'Ceballos', 'estebanc@gmail.com', '3109876543', '2024-08-07', '1986-12-12', 'Masculino', 'Activo'),
+('154753456', 'Martha', 'Córdoba', 'marthac@gmail.com', '3146549876', '2024-08-07', '1990-03-05', 'Femenino', 'Activo'),
+('789623541', 'Alejandro', 'Reyes', 'alejandror@gmail.com', '3187531596', '2024-08-10', '1989-06-15', 'Masculino', 'Activo'),
+('123459876', 'Valeria', 'Castro', 'valeriac@gmail.com', '3129874560', '2024-08-210', '1991-12-03', 'Femenino', 'Activo'),
+('951357468', 'Tomás', 'Moreno', 'tomasm@gmail.com', '3159517531', '2024-08-10', '1987-07-07', 'Masculino', 'Activo'),
+('357159864', 'Antonia', 'Gutiérrez', 'antoniag@gmail.com', '3189513574', '2024-08-12', '1993-01-25', 'Femenino', 'Activo'),
+('159753468', 'Eduardo', 'Torres', 'eduardot@gmail.com', '3197539517', '2024-08-12', '1988-05-10', 'Masculino', 'Activo'),
+('654789123', 'Andrea', 'García', 'andreag@gmail.com', '3149513578', '2024-08-12', '1990-11-20', 'Femenino', 'Activo'),
+('357951468', 'Pedro', 'López', 'pedrol@gmail.com', '3157531596', '2024-08-12', '1982-03-28', 'Masculino', 'Activo'),
+('951753159', 'Fernanda', 'Suárez', 'fernandas@gmail.com', '3191239517', '2024-08-13', '1994-09-16', 'Femenino', 'Activo'),
+('654951753', 'Raúl', 'Villalobos', 'rauls@gmail.com', '3106549517', '2024-08-13', '1985-12-29', 'Masculino', 'Activo'),
+('789456321', 'Elena', 'Mendoza', 'elenam@gmail.com', '3127894561', '2024-08-14', '1991-02-11', 'Femenino', 'Activo'),
+('321654987', 'Santiago', 'Ortega', 'santiagoo@gmail.com', '3171236540', '2024-08-15', '1986-08-02', 'Masculino', 'Activo'),
+('963852741', 'Valeria', 'Rivas', 'valeriar@gmail.com', '3196548520', '2024-08-17', '1995-10-23', 'Femenino', 'Activo'),
+('753862963', 'Gabriel', 'Salinas', 'gabriels@gmail.com', '3148529630', '2024-08-17', '1984-04-15', 'Masculino', 'Activo'),
+('852147369', 'Lucía', 'Sierra', 'lucias@gmail.com', '3104567890', '2024-08-17', '1993-06-30', 'Femenino', 'Activo'),
+('258963177', 'Héctor', 'Cáceres', 'hectorc@gmail.com', '3179876543', '2024-08-20', '1989-09-25', 'Masculino', 'Activo'),
+('147258369', 'Claudia', 'Pérez', 'claudiap@gmail.com', '3196543210', '2024-08-20', '1987-11-18', 'Femenino', 'Activo'),
+('951753157', 'Fernando', 'Quintero', 'fernandoq@gmail.com', '3151234560', '2024-08-20', '1980-01-05', 'Masculino', 'Activo'),
+('753158486', 'Natalia', 'González', 'natalia.g@gmail.com', '3101597536', '2024-08-21', '1992-05-10', 'Femenino', 'Activo'),
+(234567890, 'Prince', 'Bermúdez', 'prince.b@gmail.com', '3211597536', '2024-08-21', '2003-04-22', 'Masculino', 'Activo');
+
+describe proveedor;
+select * from proveedor;
+insert into proveedor (nombreProveedor, contactoNombreProveedor, correoElectronicoProveedor, telefonoProveedor, direccionProveedor, ciudadProveedor, fechaRegistro, estadoProveedor) values
+("Ditri JO", "Esperanza Rojas", "esperanz.rojas@distrijo.com", "3044868659", "Calle 19", "Bogotá", "2023-03-11", "Activo"),
+("Jadake", "Andrés López", "andres.lopez@jadake.com", "3001234567", "Calle 20", "Santa Rosa de Cabal", '2023-03-01', 'Activo'),
+("Iokus", "María Pérez", "maria.perez@iokus.com", "3002345678", "Avenida 31", "Finlandia, Quindío", '2023-04-22', 'Activo'),
+("Martín", "Javier Díaz", "javier.diaz@martin.com", "3003456789", "Calle 26", "Bogotá", '2023-05-01', 'Activo'),
+("Maderandia", "Laura Ríos", "laura.rios@maderandia.com", "3004567890", "Avenida 57", "Pereira", '2023-05-24', 'Activo'),
+("Oscar Juguetero", "Oscar Jiménez", "oscar.jimenez@oscarjuguetero.com", "3005678901", "Avenida 97", "Bogotá (Engativá)", '2023-09-08', 'Activo'),
+("Dlego", "Diego Martínez", "diego.martinez@dlego.com", "3006789012", "Calle 13", "Bogotá (San Victorino)", '2023-10-27', 'Activo');
+
+describe producto;
+select * from producto;
+insert into producto (codigoProducto, nombreProducto, descripcionProducto, stockProducto, fechaEntrada, idProveedorFK, precioEntrada) values
+("J01L2", "Bolirana", "Bolirana con tablero y 6 esferas", 1, "2024-10-12", 4, 200000),
+("J02L2", "Rana con brazos", "Rana con tablero y 6 argollas", 1, "2024-10-12", 4, 175000),
+("J03L2", "Futbolin", "Futbolin de mesas con 2 balones", 2, "2024-10-12", 4, 80000),
+("J04L2", "Tablero de rana", "Marcador de conteo para las ranas y boliranas", 3, "2024-10-12", 4, 5000),
+("J05L2", "Por qué siempre yo? EX", "Por qué siempre yo de cilindros", 3, "2024-10-12", 4, 40000),
+("J06L2", "Por qué siempre yo?", "Por qué siempre yo de canicas con un espacio", 4, "2024-10-12", 5, 7000),
+("J07L2", "Por qué siempre yo? EXO", "Por qué siempre yo extremo", 2, "2024-10-12", 4, 10000),
+("J08L2", "Por qué siempre yo? CA", "Por qué siempre yo de canicas", 2, "2024-10-12", 4, 10000),
+("J09L2", "Por qué siempre yo? CO", "Por qué siempre yo de El Colibri", 5, "2024-10-12", 3, 25000),
+("J10L2", "Por qué siempre yo? IO", "Por qué siempre yo de Iokus", 3, "2024-10-12", 1, 45000),
+("J11L2", "Cierre la caja grande", "Cierre la caja de números con dados", 1, "2024-10-12", 5, 45000),
+("J12L2", "Cierre la caja pequeño", "Cierre la caja de números con dados", 1, "2024-10-12", 5, 30000),
+("J13L2", "Triqui ratón y queso", "Triqui con ratones y quesos. 4 ratones y 4 quesos", 2, "2024-10-12", 3, 12000),
+("J14L2", "Cucaracha de imán", "Cucaracha con fichas de iman 7 tableros", 3, "2024-10-12", 6, 45000),
+("J15L2", "Cucaracha de chinches", "Cucaracha con fichas de chinche 7 tableros", 4, "2024-10-12", 7, 45000),
+("J16L2", "Cucaracha de plástico", "Cucaracha con fichas de plastico 7 tableros", 2, "2024-10-12", 6, 45000),
+("J17L2", "Cucaracha Jadake", "Cucaracha fichas de madera con 7 tableros", 1, "2024-10-12", 1, 80000),
+("J18L2", "Jenga original", "Jenga caja y fichas originales", 1, "2024-12-20", 5, 50000),
+("J19L2", "Jenga rojo", "Jenga natural y de colores", 4, "2024-10-12", 7, 12000),
+("J20L2", "Siete loco", "Siete loco con 7 tableros y fichas", 4, "2024-10-12", 5, 15000),
+("J21L2", "Cucaracha Jadake", "Cucaracha fichas de madera con 7 tableros", 1, "2024-10-12", 1, 80000),
+("J22L2", "Velozmente", "Velozmente con figuras animadas", 3, "2024-10-12", 5, 14000),
+("J23L2", "Avispa´o", "Avispa´o con cartas alusivas a Colombia", 2, "2024-10-12", 2, 22000),
+("J24L2", "Spot it", "Spot it con cartas de diferentes géneros", 2, "2024-10-12", 7, 14000),
+("J25L2", "Stop", "Stop con cartas", 4, "2024-10-12", 5, 14000),
+("J26L2", "Jenga Iokus", "Jenga elaborado", 3, "2024-10-12", 7, 50000),
+("J27L2", "Baloncesto", "Baloncesto de dedos", 2, "2024-10-12", 2, 18000),
+("J28L2", "Caza fantasmas", "Caza fantasmas con caja para 6 jugadores", 2, "2024-10-12", 3, 50000),
+("J29L2", "Hongos saltarines", "Hongos saltarines con caja para 6 jugadores", 1, "2024-10-12", 5, 60000),
+("J30L2", "Hongos bolsa", "Hongos en bolsa para 6 jugadores", 2, "2024-10-12", 2, 40000),
+("J31L2", "Los hongos", "Los hongos en caja para 6 jugadores", 2, "2024-10-12", 1, 100000),
+("J32L2", "Parques 6 Jadake", "Parques para 6 de Jadake", 1, "2024-10-12", 1, 150000),
+("J33L2", "Parques 4 Jadake", "Parques para 4 de Jadake", 1, "2024-10-12", 1, 90000),
+("J34L2", "Estrella Chi Jadake", "Estrella china de Jadake", 1, "2024-10-12", 1, 80000),
+("J35L2", "Rana cachorra", "Rana cachorra con 6 argollas", 4, "2024-10-12", 7, 40000),
+("J36L2", "Rummy grande", "Rummy para 6 jugadores", 2, "2024-10-12", 5, 70000),
+("J37L2", "Rummy pequeño", "Rummy pequeño para 4 jugadores", 2, "2024-10-12", 5, 50000),
+("J38L2", "Rummy Q Jadake", "Rummy Q de Jadake para 6 jugadores", 1, "2024-10-12", 1, 90000),
+("J39L2", "Chess pequeño", "Ajedrez imantado pequeño con damas chinas", 2, "2024-10-12", 2, 70000),
+("J40L2", "Chess grande", "Ajedrez grande imantado con damas chinas", 2, "2024-10-12", 2, 110000),
+("J41L2", "Rana 2 sapos", "Rana doble sapo con 6 argollas", 3, "2024-10-12", 7, 50000);
+
+describe usuario;
+select * from usaurio;
+insert into usuario (cedulaEmpleadoFK, nombreUsuario, contraseñaUsuario, rolUsuario, estadoUsuario, fechaCreacion) values
+(79485725, "Mauricio Bermúdez", "MauBer", "CEO", "Activo", "2024-11-11"),
+(52883378, "Diana Tabares", "DianaZu", "Administrador", "Activo", "2024-11-11"),
+(1016954734, "Saraha Díaz", "SarahDi", "Vendedor", "Activo", "2024-11-11"),
+(1001316474, "Prince Bermúdez", "PrinceBe", "Vendedor", "Activo", "2024-11-11");
+
+
+describe venta;
+select * from venta;
+insert into venta (numeroVenta, idEmpleadoFK, idClienteFK, codigoProductoFK, cantidadVenta, precioUnitario, totalVenta, fechaVenta, metodoPago) values
+("V001", 79485725, 345678912, "J01L2", 2, 200000, 400000, "2024-11-01", "Efectivo"),
+("V002", 52883378, 456789123, "J02L2", 1, 175000, 175000, "2024-11-02", "Tarjeta"),
+("V003", 1016954734, 123476789, "J03L2", 5, 80000, 400000, "2024-11-03", "Transferencia"),
+("V004", 1001316474, 987254321, "J04L2", 3, 5000, 15000, "2024-11-04", "Efectivo"),
+("V005", 79485725, 456323789, "J05L2", 1, 40000, 40000, "2024-11-05", "Tarjeta"),
+("V006", 52883378, 328654987, "J06L2", 4, 7000, 28000, "2024-11-06", "Efectivo"),
+("V007", 1016954734, 664321789, "J07L2", 2, 10000, 20000, "2024-11-07", "Transferencia"),
+("V008", 1001316474, 789458123, "J08L2", 3, 10000, 30000, "2024-11-08", "Efectivo"),
+("V009", 79485725, 159753786, "J09L2", 2, 25000, 50000, "2024-11-09", "Tarjeta"),
+("V010", 52883378, 753159843, "J10L2", 1, 45000, 45000, "2024-11-10", "Transferencia"),
+("V011", 1016954734, 246813279, "J11L2", 4, 45000, 180000, "2024-11-11", "Efectivo"),
+("V012", 1001316474, 369258347, "J12L2", 3, 30000, 90000, "2024-11-12", "Tarjeta"),
+("V013", 79485725, 135782468, "J13L2", 2, 12000, 24000, "2024-11-13", "Efectivo"),
+("V014", 52883378, 246997531, "J14L2", 5, 45000, 225000, "2024-11-14", "Transferencia"),
+("V015", 1016954734, 363147258, "J15L2", 3, 45000, 135000, "2024-11-15", "Tarjeta"),
+("V016", 1001316474, 1457258369, "J16L2", 6, 45000, 270000, "2024-11-16", "Efectivo"),
+("V017", 79485725, 258963147, "J17L2", 1, 80000, 80000, "2024-11-17", "Transferencia"),
+("V018", 52883378, 963752741, "J18L2", 5, 50000, 250000, "2024-11-18", "Tarjeta"),
+("V019", 1016954734, 753551852, "J19L2", 3, 12000, 36000, "2024-11-19", "Efectivo"),
+("V020", 1001316474, 951653468, "J20L2", 4, 15000, 60000, "2024-11-20", "Transferencia"),
+("V021", 79485725, 159986753, "J21L2", 2, 80000, 160000, "2024-11-21", "Tarjeta"),
+("V022", 52883378, 753236159, "J22L2", 1, 14000, 14000, "2024-11-22", "Efectivo"),
+("V023", 1016954734, 159753258, "J23L2", 3, 22000, 66000, "2024-11-23", "Transferencia"),
+("V024", 1001316474, 258147361, "J24L2", 7, 14000, 98000, "2024-11-24", "Tarjeta"),
+("V025", 79485725, 951468733, "J25L2", 5, 14000, 70000, "2024-11-25", "Efectivo"),
+("V026", 52883378, 789456159, "J26L2", 2, 50000, 100000, "2024-11-26", "Transferencia"),
+("V027", 1016954734, 321987454, "J27L2", 2, 18000, 36000, "2024-11-27", "Tarjeta"),
+("V028", 1001316474, 654789361, "J28L2", 3, 50000, 150000, "2024-11-28", "Efectivo"),
+("V029", 79485725, 456123680, "J29L2", 5, 60000, 300000, "2024-11-29", "Transferencia"),
+("V030", 52883378, 154753456, "J30L2", 2, 40000, 80000, "2024-11-30", "Tarjeta"),
+("V031", 1016954734, 789623541, "J31L2", 1, 100000, 100000, "2024-12-01", "Efectivo"),
+("V032", 1001316474, 123459876, "J32L2", 2, 150000, 300000, "2024-12-02", "Transferencia"),
+("V033", 79485725, 951357468, "J33L2", 3, 80000, 240000, "2024-12-03", "Tarjeta"),
+("V034", 52883378, 357159864, "J34L2", 4, 80000, 320000, "2024-12-04", "Efectivo"),
+("V035", 1016954734, 159753468, "J35L2", 7, 40000, 280000, "2024-12-05", "Transferencia"),
+("V036", 1001316474, 654789123, "J36L2", 5, 70000, 350000, "2024-12-06", "Tarjeta"),
+("V037", 79485725, 357951468, "J37L2", 5, 50000, 250000, "2024-12-07", "Efectivo"),
+("V038", 52883378, 951753159, "J38L2", 1, 90000, 90000, "2024-12-08", "Transferencia"),
+("V039", 1016954734, 654951753, "J39L2", 3, 70000, 210000, "2024-12-09", "Tarjeta"),
+("V040", 1001316474, 789456321, "J40L2", 4, 110000, 440000, "2024-12-10", "Efectivo");
+
+
+-- Consultas cliente
+select * from cliente;
+select nombreCliente, fechaNacimientoCliente from cliente where fechaNacimientoCliente > '1990-01-01';
+select * from cliente where apellidoCliente = 'García';
+select nombreCliente, telefonoCliente from cliente;
+select count(*) as cantidad from cliente where apellidoCliente = 'Pérez';
+select apellidoCliente, idCliente from cliente where cedulaCliente like '1%';
+select telefonoCliente from cliente where telefonoCliente like '3%';
+select fechaNacimientoCliente from cliente order by fechaNacimientoCliente asc;
+
+-- Modificaciones cliente
+update cliente set telefonoCliente = '3156543210' where idCliente = 27;
+update cliente set apellidoCliente = 'Martínez' where idCliente = 47;
+update cliente set fechaNacimientoCliente = '1980-01-01' where idCliente = 32;
+update cliente set nombreCliente = 'Luis', apellidoCliente = 'Pérez' where idCliente = 4;
+update cliente set telefonoCliente = '3186478546' where idCliente = 13;
+
+-- Eliminación cliente
+delete from cliente where idCliente = 50;
+
+
+-- Consultas básicas y específicas de producto
+select * from producto;
+select * from producto where stockProducto > 50;
+select * from producto where nombreProducto like '%cucaracha%';
+select nombreProducto, precioUnidadProducto from producto where precioUnidadProducto > 100000;
+select stockProducto, nombreProducto from producto where stockProducto between 10 and 30;
+select precioUnidadProducto from producto order by precioUnidadProducto desc;
+select * from producto order by precioUnidadProducto asc limit 5;
+select count(*) as cantidad from producto where stockProducto < 50;
+
+-- Modificaciones producto
+update producto set precioUnidadProducto = 55000 where idProducto = 7;
+update producto set stockProducto = stockProducto + 15 where idProducto = 30;
+update producto set descripcionProducto = 'Cubo Rubik' where idProducto = 27;
+update producto set nombreProducto = 'Cucaracha 1' where idProducto = 49;
+update producto set precioUnidadProducto = precioUnidadProducto * 0.9;
+
+-- Eliminación producto
+delete from producto where idProducto = 50;
+
+
+-- Consultas usuario
+select * from usuario;
+select nombreUsuario from usuario where rolUsuario = 'Vendedor';
+select cedulaUsuario from usuario where cedulaUsuario like '1%';
+select rolUsuario from usuario where nombreUsuario like 'M%';
+select nombreUsuario, idUsuario from usuario where rolUsuario = 'Administrador';
+select count(*) as cantidad from usuario where rolUsuario = 'Vendedor';
+select * from usuario order by idUsuario desc;
+
+-- Modificaciones usuario
+update usuario set cedulaUsuario = 1001316478 where idUsuario = 4;
+update usuario set rolUsuario = 'Administrador' where idUsuario = 3;
+update usuario set nombreUsuario = 'Nicolás Bermudez' where idUsuario = 4;
+update usuario set nombreUsuario = 'Ernesto Rabadilla' where idUsuario = 3;
+
+-- Eliminación usuario
+delete from usuario where idUsuario = 4;
+
+
+-- Consultas proveedor
+select * from proveedor;
+select * from proveedor where nombreProveedor = 'JO';
+select * from proveedor where direccionProveedor like '%Calle%';
+select nombreProveedor, ciudadProveedor from proveedor where ciudadProveedor = 'Bogotá';
+select idProveedor from proveedor where ciudadProveedor = 'Santa Rosa de Cabal';
+select nombreProveedor from proveedor order by nombreProveedor asc;
+
+-- Modificaciones en proveedor
+update proveedor set direccionProveedor = 'Transversal 6' where idProveedor = 5;
+update proveedor set ciudadProveedor = 'Cali' where idProveedor = 2;
+update proveedor set nombreProveedor = 'KidOToy' where idProveedor = 3;
+
+-- Eliminación proveedor
+delete from proveedor where idProveedor = 9;
+
+
+-- Consultas venta
+select * from venta;
+select idUsuarioFK from venta where totalVenta > 200000;
+select numeroVenta from venta where fechaVenta between '2024-01-01' and '2024-10-05';
+select * from venta where idClienteFK = 27;
+select numeroVenta from venta where idUsuarioFK = 1;
+select sum(totalVenta) as total_vendido from venta where fechaVenta > '2024-10-24';
+select count(*) as cantidad_ventas from venta where idUsuarioFK = 3;
+
+-- Modificaciones venta
+update venta set totalVenta = totalVenta * 0.9 where numeroVenta = 'V001';
+update venta set idUsuarioFK = 2 where numeroVenta = 'V003';
+update venta set idClienteFK = 4 where numeroVenta = 'V005';
+
+
+-- Eliminación venta
+delete from venta where numeroVenta = 'V040';
+
+-- Vista clientes y productos
+delimiter //
+create view vistaClientesp as
+select c.nombreCliente, p.nombreProducto
+from cliente c
+join venta v on c.idCliente = v.idClienteFK
+join producto p on v.codigoProductoFK = p.idProducto; 
+//
+delimiter ;
+
+select * from vistaClientesp;
+
+
+-- Sentencias Join
+select c.nombreCliente, sum(v.totalVenta) as totalGastado
+from cliente c
+join venta v on c.idCliente = v.idClienteFK
+group by c.idCliente;
+
+select c.nombreCliente, p.nombreProducto, v.fechaVenta
+from venta v
+join cliente c on v.idClienteFK = c.idCliente
+join producto p on v.codigoProductoFK = p.idProducto;
+
+select c.nombreCliente, count(v.numeroVenta) as totalVentas
+from cliente c
+left join venta v on c.idCliente = v.idClienteFK
+group by c.idCliente;
+
+select pr.nombreProveedor, p.nombreProducto
+from proveedor pr
+join telefonoProveedor tp on pr.idProveedor = tp.idProveedorFK
+join producto p on p.idProducto = pr.idProveedor; 
+
+select c.nombreCliente, 
+       sum(v.totalVenta) as totalGastado, 
+       count(v.numeroVenta) as cantidadCompras
+from cliente c
+join venta v on c.idCliente = v.idClienteFK
+group by c.idCliente
+having totalGastado > 100;
+
+
+-- Subconsultas
+select nombreCliente 
+from cliente 
+where idCliente in (select idClienteFK from venta where fechaVenta > '2024-10-20');
+
+select nombreProducto 
+from producto 
+where stockProducto < (
+    select avg(stockProducto) 
+    from producto
+);
+
+select nombreCliente
+from cliente
+where idCliente in (
+    select idClienteFK 
+    from venta 
+    where totalVenta > 200
+);
+
+select nombreProducto
+from producto
+where idProducto not in (
+    select codigoProductoFK
+    from venta
+);
+
+
+-- Procedimiento almacenado
+delimiter //
+
+create procedure agregarCliente(
+    in nombre varchar(100),
+    in apellido varchar(100),
+    in telefono varchar(15)
+)
+begin
+    insert into cliente (nombreCliente, apellidoCliente, telefonoCliente) 
+    values (nombre, apellido, telefono);
+end //
+
+delimiter ;
+
+call agregarCliente('Luna', 'Marquez', '3115518114');
+
+select * from cliente;
+
+delimiter //
+create trigger actualizarStock after insert on venta
+for each row
+begin
+    update producto
+    set stockProducto = stockProducto - new.cantidadVenta
+    where codigoProducto = new.codigoProductoFK;
+end //
+delimiter ;
+
+delimiter //
+create trigger calcularTotal before insert on venta
+for each row
+begin
+    set new.totalVenta = new.cantidadVenta * new.precioUnitario;
+end //
+delimiter ;
