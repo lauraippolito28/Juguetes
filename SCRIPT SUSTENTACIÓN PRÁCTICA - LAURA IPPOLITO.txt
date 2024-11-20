@@ -1,0 +1,87 @@
+//1. Crear base de datos y colecciones
+use tienda_musica;
+
+db.createCollection("artistas");
+db.createCollection("albumes");
+
+// 2. Insertar datos 
+db.artistas.insertMany([
+    { nombre: "The Beatles", genero: "Rock", pais: "Reino Unido" },
+    { nombre: "Taylor Swift", genero: "Pop", pais: "Estados Unidos" },
+    { nombre: "Shakira", genero: "Latino", pais: "Colombia" }
+]);
+
+
+db.albumes.insertMany([
+    { nombre: "Abbey Road", artista: "The Beatles", año: 1969 },
+    { nombre: "1989", artista: "Taylor Swift", año: 2014 },
+    { nombre: "El Dorado", artista: "Shakira", año: 2017 }
+]);
+
+
+// 3. CONSULTAS
+// Encuentra todos los documentos en la colección artistas.
+db.artistas.find();
+
+// Encuentra todos los álbumes de un artista específico.
+db.albumes.find ({artista: "Taylor Swift"});
+
+// Busca artistas de un género específico.
+db.artistas.find({genero: "Pop"});
+
+// Encuentra álbumes lanzados después del año 2000
+db.albumes.find({ año: { $gt: 2000 } });
+
+
+//4. ACTUALIZAR DOCUMENTOS 
+//Cambia el país de Shakira a “España”.
+db.band.update({'nombre':'Shakira'},{$set:{'pais':'España'}})
+
+// Añade un nuevo campo ventas al álbum "1989 con un valor de 10000000
+db.album.insert({nombre: "1989", ventas: "10000000"})
+
+
+//5. ELIMINAR DOCUMENTOS
+// Elimina el artista The Beatles 
+db.artista.deleteOne({nombre: "The Beatles"});
+
+//Elimina todos los álbumes lanzados antes del año 2000.
+db.albumes.deleteMany({ año: { $lt: 2000 } })
+
+//Implementa una consulta para encontrar todos los artistas de un país.
+db.artistas.find({ pais: "Colombia" })
+
+//Realiza una agregación para contar cuántos álbumes tiene cada artista.
+db.albumes.aggregate([
+  {
+    $group: {
+      _id: "$artista",       
+      cantidad_albumes: { $sum: 1 } 
+    }
+  }
+])
+
+
+//Implementa una sentencia que devuelva el artista con más álbumes.
+db.albumes.aggregate([
+  {
+    $group: {
+      _id: "$artista",          
+      cantidad_albumes: { $sum: 1 }  
+    }
+  },
+  {
+    $sort: { cantidad_albumes: -1 } 
+  },
+  {
+    $limit: 1  
+  }
+])
+
+
+
+
+
+
+
+
