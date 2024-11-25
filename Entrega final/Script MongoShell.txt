@@ -1,0 +1,1927 @@
+use ElColibri;
+
+switched to db ElColibri
+db.createCollection("empleado");
+db.createCollection("cliente");
+db.createCollection("proveedor");
+db.createCollection("producto");
+db.createCollection("usuario");
+db.createCollection("venta");
+
+{ ok: 1 }
+
+db.empleado.insertMany([
+    { cedulaEmpleado: "79485725", nombreEmpleado: "Mauricio", apellidoEmpleado: "Mauricio", correoElectronicoEmpleado: "mauber@gmail.com", telefonoEmpleado: "3114868659", direccionEmpleado: "Calle 69d #105f - 88", cargoEmpleado: "CEO", fechaEntradaEmpleado: new Date("2020-08-20"), salarioEmpleado: 3000000, estadoEmpleado: "Activo", fechaNacimientoEmpleado: new Date("1969-05-01"), generoEmpleado: "Masculino" },
+    { cedulaEmpleado: "52883378", nombreEmpleado: "Diana", apellidoEmpleado: "Tabares", correoElectronicoEmpleado: "dianazu81@hotmail.com", telefonoEmpleado: "3115518114", direccionEmpleado: "Calle 69d #105f - 88", cargoEmpleado: "Administrador", fechaEntradaEmpleado: new Date("2020-08-20"), salarioEmpleado: 2250000, estadoEmpleado: "Activo", fechaNacimientoEmpleado: new Date("1989-09-08"), generoEmpleado: "Femenino" },
+    { cedulaEmpleado: "1016954734", nombreEmpleado: "Sarah", apellidoEmpleado: "Díaz", correoElectronicoEmpleado: "sarahd@gmail.com", telefonoEmpleado: "3148273585", direccionEmpleado: "Calle 69d #105f - 88", cargoEmpleado: "Vendedor", fechaEntradaEmpleado: new Date("2023-12-01"), salarioEmpleado: 1300000, estadoEmpleado: "Activo", fechaNacimientoEmpleado: new Date("2007-11-11"), generoEmpleado: "Femenino" },
+    { cedulaEmpleado: "1001316474", nombreEmpleado: "Prince", apellidoEmpleado: "Bermúdez", correoElectronicoEmpleado: "bermudezt2242@gmail.com", telefonoEmpleado: "3212020871", direccionEmpleado: "Calle 69d #105f - 88", cargoEmpleado: "Vendedor", fechaEntradaEmpleado: new Date("2020-08-20"), salarioEmpleado: 1300000, estadoEmpleado: "Activo", fechaNacimientoEmpleado: new Date("2003-04-22"), generoEmpleado: "Masculino" }
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67437fb8dda0c92a57280fc9'),
+    '1': ObjectId('67437fb8dda0c92a57280fca'),
+    '2': ObjectId('67437fb8dda0c92a57280fcb'),
+    '3': ObjectId('67437fb8dda0c92a57280fcc')
+  }
+}
+
+db.cliente.insertMany([
+    { cedulaCliente: "345678912", nombreCliente: "Camilo", apellidoCliente: "Díaz", correoElectronico: "camilod@gmail.com", telefonoCliente: "3161237890", fechaRegistroCliente: new Date("2023-07-20"), fechaNacimientoCliente: new Date("1992-09-16"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "456789123", nombreCliente: "Angélica", apellidoCliente: "Pérez", correoElectronico: "angelicap@gmail.com", telefonoCliente: "3179876542", fechaRegistroCliente: new Date("2023-07-20"), fechaNacimientoCliente: new Date("1988-11-04"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "123476789", nombreCliente: "Juan", apellidoCliente: "Pérez", correoElectronico: "juanp@gmail.com", telefonoCliente: "3148765432", fechaRegistroCliente: new Date("2024-07-20"), fechaNacimientoCliente: new Date("1985-03-15"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "987254321", nombreCliente: "María", apellidoCliente: "Gómez", correoElectronico: "mariag@gmail.com", telefonoCliente: "3129876543", fechaRegistroCliente: new Date("2024-07-20"), fechaNacimientoCliente: new Date("1990-07-22"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "456323789", nombreCliente: "Carlos", apellidoCliente: "Rodríguez", correoElectronico: "carlosr@gmail.com", telefonoCliente: "3104567891", fechaRegistroCliente: new Date("2024-07-20"), fechaNacimientoCliente: new Date("1988-11-10"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "328654987", nombreCliente: "Ana", apellidoCliente: "López", correoElectronico: "anal@gmail.com", telefonoCliente: "3151234567", fechaRegistroCliente: new Date("2024-07-21"), fechaNacimientoCliente: new Date("1995-05-25"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "664321789", nombreCliente: "Jorge", apellidoCliente: "Martínez", correoElectronico: "jorgem@gmail.com", telefonoCliente: "3176543210", fechaRegistroCliente: new Date("2024-07-21"), fechaNacimientoCliente: new Date("1980-09-30"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "789458123", nombreCliente: "Laura", apellidoCliente: "Hernández", correoElectronico: "laurah@gmail.com", telefonoCliente: "3189876543", fechaRegistroCliente: new Date("2024-07-21"), fechaNacimientoCliente: new Date("1992-02-14"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "159753786", nombreCliente: "Luis", apellidoCliente: "García", correoElectronico: "luisg@gmail.com", telefonoCliente: "3191239876", fechaRegistroCliente: new Date("2024-07-21"), fechaNacimientoCliente: new Date("1987-06-05"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "753159843", nombreCliente: "Sofía", apellidoCliente: "Sánchez", correoElectronico: "sofias@gmail.com", telefonoCliente: "3143216789", fechaRegistroCliente: new Date("2024-07-25"), fechaNacimientoCliente: new Date("1993-08-20"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "246813279", nombreCliente: "Diego", apellidoCliente: "Ramírez", correoElectronico: "diegor@gmail.com", telefonoCliente: "3107891234", fechaRegistroCliente: new Date("2024-07-25"), fechaNacimientoCliente: new Date("1989-12-01"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "369258347", nombreCliente: "Valentina", apellidoCliente: "Castillo", correoElectronico: "valentinac@gmail.com", telefonoCliente: "3159871234", fechaRegistroCliente: new Date("2024-07-25"), fechaNacimientoCliente: new Date("1994-10-18"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "135782468", nombreCliente: "Andrés", apellidoCliente: "Mendoza", correoElectronico: "andresm@gmail.com", telefonoCliente: "3198765432", fechaRegistroCliente: new Date("2024-07-25"), fechaNacimientoCliente: new Date("1983-04-27"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "246997531", nombreCliente: "Isabella", apellidoCliente: "Rojas", correoElectronico: "isabellar@gmail.com", telefonoCliente: "3126549870", fechaRegistroCliente: new Date("2024-07-28"), fechaNacimientoCliente: new Date("1991-01-12"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "363147258", nombreCliente: "Samuel", apellidoCliente: "Jiménez", correoElectronico: "samuelj@gmail.com", telefonoCliente: "3141592653", fechaRegistroCliente: new Date("2024-07-28"), fechaNacimientoCliente: new Date("1986-11-23"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "1457258369", nombreCliente: "Camila", apellidoCliente: "Salazar", correoElectronico: "camilas@gmail.com", telefonoCliente: "3177531598", fechaRegistroCliente: new Date("2024-07-28"), fechaNacimientoCliente: new Date("1992-03-09"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "258963147", nombreCliente: "Felipe", apellidoCliente: "Vargas", correoElectronico: "felipev@gmail.com", telefonoCliente: "3182468135", fechaRegistroCliente: new Date("2024-07-28"), fechaNacimientoCliente: new Date("1984-07-15"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "963752741", nombreCliente: "Natalia", apellidoCliente: "Quintero", correoElectronico: "nataliaq@gmail.com", telefonoCliente: "3193214789", fechaRegistroCliente: new Date("2024-07-30"), fechaNacimientoCliente: new Date("1990-05-30"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "159986753", nombreCliente: "Sebastián", apellidoCliente: "Cárdenas", correoElectronico: "sebastianc@gmail.com", telefonoCliente: "3157896541", fechaRegistroCliente: new Date("2024-07-30"), fechaNacimientoCliente: new Date("1981-09-19"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "753551852", nombreCliente: "Lucía", apellidoCliente: "Morales", correoElectronico: "luciam@gmail.com", telefonoCliente: "3172589643", fechaRegistroCliente: new Date("2024-07-30"), fechaNacimientoCliente: new Date("1993-12-08"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "951653468", nombreCliente: "Daniel", apellidoCliente: "González", correoElectronico: "danielg@gmail.com", telefonoCliente: "3148765430", fechaRegistroCliente: new Date("2024-07-30"), fechaNacimientoCliente: new Date("1985-02-27"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "159753258", nombreCliente: "Gabriela", apellidoCliente: "Torres", correoElectronico: "gabrielat@gmail.com", telefonoCliente: "3186543219", fechaRegistroCliente: new Date("2024-08-01"), fechaNacimientoCliente: new Date("1989-10-03"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "358159486", nombreCliente: "Manuel", apellidoCliente: "Márquez", correoElectronico: "manuelm@gmail.com", telefonoCliente: "3101597538", fechaRegistroCliente: new Date("2024-08-01"), fechaNacimientoCliente: new Date("1980-06-21"), generoCliente: "Masculino", estadoCliente: "Activo" },
+    { cedulaCliente: "753236159", nombreCliente: "Diana", apellidoCliente: "Mejía", correoElectronico: "dianam@gmail.com", telefonoCliente: "3197531864", fechaRegistroCliente: new Date("2024-08-01"), fechaNacimientoCliente: new Date("1995-01-15"), generoCliente: "Femenino", estadoCliente: "Activo" },
+    { cedulaCliente: "159258253", nombreCliente: "Hugo", apellidoCliente: "Patiño", correoElectronico: "hugop@gmail.com", telefonoCliente: "3154567890", fechaRegistroCliente: new Date("2024-08-02"), fechaNacimientoCliente: new Date("1987-04-11"), generoCliente: "Masculino", estadoCliente: "Activo" }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67438392dda0c92a57280fcd'),
+    '1': ObjectId('67438392dda0c92a57280fce'),
+    '2': ObjectId('67438392dda0c92a57280fcf'),
+    '3': ObjectId('67438392dda0c92a57280fd0'),
+    '4': ObjectId('67438392dda0c92a57280fd1'),
+    '5': ObjectId('67438392dda0c92a57280fd2'),
+    '6': ObjectId('67438392dda0c92a57280fd3'),
+    '7': ObjectId('67438392dda0c92a57280fd4'),
+    '8': ObjectId('67438392dda0c92a57280fd5'),
+    '9': ObjectId('67438392dda0c92a57280fd6'),
+    '10': ObjectId('67438392dda0c92a57280fd7'),
+    '11': ObjectId('67438392dda0c92a57280fd8'),
+    '12': ObjectId('67438392dda0c92a57280fd9'),
+    '13': ObjectId('67438392dda0c92a57280fda'),
+    '14': ObjectId('67438392dda0c92a57280fdb'),
+    '15': ObjectId('67438392dda0c92a57280fdc'),
+    '16': ObjectId('67438392dda0c92a57280fdd'),
+    '17': ObjectId('67438392dda0c92a57280fde'),
+    '18': ObjectId('67438392dda0c92a57280fdf'),
+    '19': ObjectId('67438392dda0c92a57280fe0'),
+    '20': ObjectId('67438392dda0c92a57280fe1'),
+    '21': ObjectId('67438392dda0c92a57280fe2'),
+    '22': ObjectId('67438392dda0c92a57280fe3'),
+    '23': ObjectId('67438392dda0c92a57280fe4'),
+    '24': ObjectId('67438392dda0c92a57280fe5')
+  }
+}
+
+db.proveedor.insertMany([
+    { nombreProveedor: "Ditri JO", contactoNombreProveedor: "Esperanza Rojas", correoElectronicoProveedor: "esperanz.rojas@distrijo.com", telefonoProveedor: "3044868659", direccionProveedor: "Calle 19", ciudadProveedor: "Bogotá", fechaRegistro: new Date("2023-03-11"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Jadake", contactoNombreProveedor: "Andrés López", correoElectronicoProveedor: "andres.lopez@jadake.com", telefonoProveedor: "3001234567", direccionProveedor: "Calle 20", ciudadProveedor: "Santa Rosa de Cabal", fechaRegistro: new Date("2023-03-01"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Iokus", contactoNombreProveedor: "María Pérez", correoElectronicoProveedor: "maria.perez@iokus.com", telefonoProveedor: "3002345678", direccionProveedor: "Avenida 31", ciudadProveedor: "Finlandia, Quindío", fechaRegistro: new Date("2023-04-22"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Martín", contactoNombreProveedor: "Javier Díaz", correoElectronicoProveedor: "javier.diaz@martin.com", telefonoProveedor: "3003456789", direccionProveedor: "Calle 26", ciudadProveedor: "Bogotá", fechaRegistro: new Date("2023-05-01"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Maderandia", contactoNombreProveedor: "Laura Ríos", correoElectronicoProveedor: "laura.rios@maderandia.com", telefonoProveedor: "3004567890", direccionProveedor: "Avenida 57", ciudadProveedor: "Pereira", fechaRegistro: new Date("2023-05-24"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Oscar Juguetero", contactoNombreProveedor: "Oscar Jiménez", correoElectronicoProveedor: "oscar.jimenez@oscarjuguetero.com", telefonoProveedor: "3005678901", direccionProveedor: "Avenida 97", ciudadProveedor: "Bogotá (Engativá)", fechaRegistro: new Date("2023-09-08"), estadoProveedor: "Activo" },
+    { nombreProveedor: "Dlego", contactoNombreProveedor: "Diego Martínez", correoElectronicoProveedor: "diego.martinez@dlego.com", telefonoProveedor: "3006789012", direccionProveedor: "Calle 13", ciudadProveedor: "Bogotá (San Victorino)", fechaRegistro: new Date("2023-10-27"), estadoProveedor: "Activo" }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67438416dda0c92a57280fe6'),
+    '1': ObjectId('67438416dda0c92a57280fe7'),
+    '2': ObjectId('67438416dda0c92a57280fe8'),
+    '3': ObjectId('67438416dda0c92a57280fe9'),
+    '4': ObjectId('67438416dda0c92a57280fea'),
+    '5': ObjectId('67438416dda0c92a57280feb'),
+    '6': ObjectId('67438416dda0c92a57280fec')
+  }
+}
+
+db.producto.insertMany([
+    { codigoProducto: "J01L2", nombreProducto: "Bolirana", descripcionProducto: "Bolirana con tablero y 6 esferas", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 200000 },
+    { codigoProducto: "J02L2", nombreProducto: "Rana con brazos", descripcionProducto: "Rana con tablero y 6 argollas", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 175000 },
+    { codigoProducto: "J03L2", nombreProducto: "Futbolín", descripcionProducto: "Futbolín de mesa con 2 balones", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 80000 },
+    { codigoProducto: "J04L2", nombreProducto: "Tablero de rana", descripcionProducto: "Marcador de conteo para las ranas y boliranas", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 5000 },
+    { codigoProducto: "J05L2", nombreProducto: "Por qué siempre yo? EX", descripcionProducto: "Por qué siempre yo de cilindros", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 40000 },
+    { codigoProducto: "J06L2", nombreProducto: "Por qué siempre yo?", descripcionProducto: "Por qué siempre yo de canicas con un espacio", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 7000 },
+    { codigoProducto: "J07L2", nombreProducto: "Por qué siempre yo? EXO", descripcionProducto: "Por qué siempre yo extremo", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 10000 },
+    { codigoProducto: "J08L2", nombreProducto: "Por qué siempre yo? CA", descripcionProducto: "Por qué siempre yo de canicas", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 10000 },
+    { codigoProducto: "J09L2", nombreProducto: "Por qué siempre yo? CO", descripcionProducto: "Por qué siempre yo de El Colibri", stockProducto: 5, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 25000 },
+    { codigoProducto: "J10L2", nombreProducto: "Por qué siempre yo? IO", descripcionProducto: "Por qué siempre yo de Iokus", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 1, precioEntrada: 45000 },
+    { codigoProducto: "J11L2", nombreProducto: "Cierre la caja grande", descripcionProducto: "Cierre la caja de números con dados", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 45000 },
+    { codigoProducto: "J12L2", nombreProducto: "Cierre la caja pequeño", descripcionProducto: "Cierre la caja de números con dados", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 30000 },
+    { codigoProducto: "J13L2", nombreProducto: "Triqui ratón y queso", descripcionProducto: "Triqui con ratones y quesos. 4 ratones y 4 quesos", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 12000 },
+    { codigoProducto: "J14L2", nombreProducto: "Cucaracha de imán", descripcionProducto: "Cucaracha con fichas de imán 7 tableros", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 45000 },
+    { codigoProducto: "J15L2", nombreProducto: "Cucaracha de chinches", descripcionProducto: "Cucaracha con fichas de chinche 7 tableros", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 45000 },
+    { codigoProducto: "J16L2", nombreProducto: "Cucaracha de plástico", descripcionProducto: "Cucaracha con fichas de plástico 7 tableros", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 45000 },
+    { codigoProducto: "J17L2", nombreProducto: "Cucaracha Jadake", descripcionProducto: "Cucaracha fichas de madera con 7 tableros", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 1, precioEntrada: 80000 },
+    { codigoProducto: "J18L2", nombreProducto: "Jenga original", descripcionProducto: "Jenga caja y fichas originales", stockProducto: 1, fechaEntrada: new Date("2024-12-20"), idProveedorFK: 5, precioEntrada: 50000 },
+    { codigoProducto: "J19L2", nombreProducto: "Jenga rojo", descripcionProducto: "Jenga natural y de colores", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 12000 },
+    { codigoProducto: "J20L2", nombreProducto: "Siete loco", descripcionProducto: "Siete loco con 7 tableros y fichas", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 15000 },
+    { codigoProducto: "J21L2", nombreProducto: "Cucaracha Jadake", descripcionProducto: "Cucaracha fichas de madera con 7 tableros", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 1, precioEntrada: 80000 },
+    { codigoProducto: "J22L2", nombreProducto: "Velozmente", descripcionProducto: "Velozmente con figuras animadas", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 14000 },
+    { codigoProducto: "J23L2", nombreProducto: "Avispa´o", descripcionProducto: "Avispa´o con cartas alusivas a Colombia", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 22000 },
+    { codigoProducto: "J24L2", nombreProducto: "Spot it", descripcionProducto: "Spot it con cartas de diferentes géneros", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 14000 },
+    { codigoProducto: "J25L2", nombreProducto: "Stop", descripcionProducto: "Stop con cartas", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 14000 },
+    { codigoProducto: "J26L2", nombreProducto: "Jenga Iokus", descripcionProducto: "Jenga elaborado", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 1, precioEntrada: 50000 },
+    { codigoProducto: "J27L2", nombreProducto: "Baloncesto", descripcionProducto: "Baloncesto de dedos", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 4, precioEntrada: 18000 },
+    { codigoProducto: "J28L2", nombreProducto: "Caza fantasmas", descripcionProducto: "Caza fantasmas con caja para 6 jugadores", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 5, precioEntrada: 50000 },
+    { codigoProducto: "J29L2", nombreProducto: "Hongos saltarines", descripcionProducto: "Hongos saltarines con caja para 6 jugadores", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 60000 },
+    { codigoProducto: "J30L2", nombreProducto: "Hongos bolsa", descripcionProducto: "Hongos en bolsa para 6 jugadores", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 40000 },
+    { codigoProducto: "J31L2", nombreProducto: "Los hongos", descripcionProducto: "Los hongos en caja para 6 jugadores", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 1, precioEntrada: 100000 },
+    { codigoProducto: "J32L2", nombreProducto: "Parques 6 Jadake", descripcionProducto: "Parques para 6 de Jadake", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 150000 },
+    { codigoProducto: "J33L2", nombreProducto: "Parques 4 Jadake", descripcionProducto: "Parques para 4 de Jadake", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 90000 },
+    { codigoProducto: "J34L2", nombreProducto: "Estrella Chi Jadake", descripcionProducto: "Estrella china de Jadake", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 80000 },
+    { codigoProducto: "J35L2", nombreProducto: "Rana cachorra", descripcionProducto: "Rana cachorra con 6 argollas", stockProducto: 4, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 40000 },
+    { codigoProducto: "J36L2", nombreProducto: "Rummy grande", descripcionProducto: "Rummy para 6 jugadores", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 70000 },
+    { codigoProducto: "J37L2", nombreProducto: "Rummy pequeño", descripcionProducto: "Rummy pequeño para 4 jugadores", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 50000 },
+    { codigoProducto: "J38L2", nombreProducto: "Rummy Q Jadake", descripcionProducto: "Rummy Q de Jadake para 6 jugadores", stockProducto: 1, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 3, precioEntrada: 90000 },
+    { codigoProducto: "J39L2", nombreProducto: "Chess pequeño", descripcionProducto: "Ajedrez imantado pequeño con damas chinas", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 70000 },
+    { codigoProducto: "J40L2", nombreProducto: "Chess grande", descripcionProducto: "Ajedrez grande imantado con damas chinas", stockProducto: 2, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 6, precioEntrada: 110000 },
+    { codigoProducto: "J41L2", nombreProducto: "Rana 2 sapos", descripcionProducto: "Rana doble sapo con 6 argollas", stockProducto: 3, fechaEntrada: new Date("2024-10-12"), idProveedorFK: 7, precioEntrada: 50000 }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67438476dda0c92a57280fed'),
+    '1': ObjectId('67438476dda0c92a57280fee'),
+    '2': ObjectId('67438476dda0c92a57280fef'),
+    '3': ObjectId('67438476dda0c92a57280ff0'),
+    '4': ObjectId('67438476dda0c92a57280ff1'),
+    '5': ObjectId('67438476dda0c92a57280ff2'),
+    '6': ObjectId('67438476dda0c92a57280ff3'),
+    '7': ObjectId('67438476dda0c92a57280ff4'),
+    '8': ObjectId('67438476dda0c92a57280ff5'),
+    '9': ObjectId('67438476dda0c92a57280ff6'),
+    '10': ObjectId('67438476dda0c92a57280ff7'),
+    '11': ObjectId('67438476dda0c92a57280ff8'),
+    '12': ObjectId('67438476dda0c92a57280ff9'),
+    '13': ObjectId('67438476dda0c92a57280ffa'),
+    '14': ObjectId('67438476dda0c92a57280ffb'),
+    '15': ObjectId('67438476dda0c92a57280ffc'),
+    '16': ObjectId('67438476dda0c92a57280ffd'),
+    '17': ObjectId('67438476dda0c92a57280ffe'),
+    '18': ObjectId('67438476dda0c92a57280fff'),
+    '19': ObjectId('67438476dda0c92a57281000'),
+    '20': ObjectId('67438476dda0c92a57281001'),
+    '21': ObjectId('67438476dda0c92a57281002'),
+    '22': ObjectId('67438476dda0c92a57281003'),
+    '23': ObjectId('67438476dda0c92a57281004'),
+    '24': ObjectId('67438476dda0c92a57281005'),
+    '25': ObjectId('67438476dda0c92a57281006'),
+    '26': ObjectId('67438476dda0c92a57281007'),
+    '27': ObjectId('67438476dda0c92a57281008'),
+    '28': ObjectId('67438476dda0c92a57281009'),
+    '29': ObjectId('67438476dda0c92a5728100a'),
+    '30': ObjectId('67438476dda0c92a5728100b'),
+    '31': ObjectId('67438476dda0c92a5728100c'),
+    '32': ObjectId('67438476dda0c92a5728100d'),
+    '33': ObjectId('67438476dda0c92a5728100e'),
+    '34': ObjectId('67438476dda0c92a5728100f'),
+    '35': ObjectId('67438476dda0c92a57281010'),
+    '36': ObjectId('67438476dda0c92a57281011'),
+    '37': ObjectId('67438476dda0c92a57281012'),
+    '38': ObjectId('67438476dda0c92a57281013'),
+    '39': ObjectId('67438476dda0c92a57281014'),
+    '40': ObjectId('67438476dda0c92a57281015')
+  }
+}
+
+db.usuario.insertMany([
+    { cedulaEmpleadoFK: "79485725", nombreUsuario: "Mauricio Bermúdez", contraseñaUsuario: "MauBer", rolUsuario: "CEO", estadoUsuario: "Activo", fechaCreacion: new Date("2024-11-11") },
+    { cedulaEmpleadoFK: "52883378", nombreUsuario: "Diana Tabares", contraseñaUsuario: "DianaZu", rolUsuario: "Administrador", estadoUsuario: "Activo", fechaCreacion: new Date("2024-11-11") },
+    { cedulaEmpleadoFK: "1016954734", nombreUsuario: "Sarah Díaz", contraseñaUsuario: "SarahDi", rolUsuario: "Vendedor", estadoUsuario: "Activo", fechaCreacion: new Date("2024-11-11") },
+    { cedulaEmpleadoFK: "1001316474", nombreUsuario: "Prince Bermúdez", contraseñaUsuario: "PrinceBe", rolUsuario: "Vendedor", estadoUsuario: "Activo", fechaCreacion: new Date("2024-11-11") }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('674384cbdda0c92a57281016'),
+    '1': ObjectId('674384cbdda0c92a57281017'),
+    '2': ObjectId('674384cbdda0c92a57281018'),
+    '3': ObjectId('674384cbdda0c92a57281019')
+  }
+}
+
+db.venta.insertMany([
+    { numeroVenta: "V001", idEmpleadoFK: "79485725", idClienteFK: "345678912", codigoProductoFK: "J01L2", cantidadVenta: 2, precioUnitario: 200000, totalVenta: 400000, fechaVenta: new Date("2024-11-01"), metodoPago: "Efectivo" },
+    { numeroVenta: "V002", idEmpleadoFK: "52883378", idClienteFK: "456789123", codigoProductoFK: "J02L2", cantidadVenta: 1, precioUnitario: 175000, totalVenta: 175000, fechaVenta: new Date("2024-11-02"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V003", idEmpleadoFK: "1016954734", idClienteFK: "123476789", codigoProductoFK: "J03L2", cantidadVenta: 5, precioUnitario: 80000, totalVenta: 400000, fechaVenta: new Date("2024-11-03"), metodoPago: "Transferencia" },
+    { numeroVenta: "V004", idEmpleadoFK: "1001316474", idClienteFK: "987254321", codigoProductoFK: "J04L2", cantidadVenta: 3, precioUnitario: 5000, totalVenta: 15000, fechaVenta: new Date("2024-11-04"), metodoPago: "Efectivo" },
+    { numeroVenta: "V005", idEmpleadoFK: "79485725", idClienteFK: "456323789", codigoProductoFK: "J05L2", cantidadVenta: 1, precioUnitario: 40000, totalVenta: 40000, fechaVenta: new Date("2024-11-05"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V006", idEmpleadoFK: "52883378", idClienteFK: "328654987", codigoProductoFK: "J06L2", cantidadVenta: 3, precioUnitario: 7000, totalVenta: 21000, fechaVenta: new Date("2024-11-06"), metodoPago: "Efectivo" },
+    { numeroVenta: "V007", idEmpleadoFK: "1016954734", idClienteFK: "664321789", codigoProductoFK: "J07L2", cantidadVenta: 4, precioUnitario: 10000, totalVenta: 40000, fechaVenta: new Date("2024-11-07"), metodoPago: "Transferencia" },
+    { numeroVenta: "V008", idEmpleadoFK: "1001316474", idClienteFK: "789458123", codigoProductoFK: "J08L2", cantidadVenta: 2, precioUnitario: 10000, totalVenta: 20000, fechaVenta: new Date("2024-11-08"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V009", idEmpleadoFK: "79485725", idClienteFK: "159753786", codigoProductoFK: "J09L2", cantidadVenta: 1, precioUnitario: 25000, totalVenta: 25000, fechaVenta: new Date("2024-11-09"), metodoPago: "Efectivo" },
+    { numeroVenta: "V010", idEmpleadoFK: "52883378", idClienteFK: "753159843", codigoProductoFK: "J10L2", cantidadVenta: 3, precioUnitario: 45000, totalVenta: 135000, fechaVenta: new Date("2024-11-10"), metodoPago: "Transferencia" },
+    { numeroVenta: "V011", idEmpleadoFK: "1016954734", idClienteFK: "987254321", codigoProductoFK: "J11L2", cantidadVenta: 2, precioUnitario: 45000, totalVenta: 90000, fechaVenta: new Date("2024-11-11"), metodoPago: "Efectivo" },
+    { numeroVenta: "V012", idEmpleadoFK: "1001316474", idClienteFK: "159753786", codigoProductoFK: "J12L2", cantidadVenta: 3, precioUnitario: 5000, totalVenta: 15000, fechaVenta: new Date("2024-11-12"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V013", idEmpleadoFK: "79485725", idClienteFK: "664321789", codigoProductoFK: "J13L2", cantidadVenta: 1, precioUnitario: 12000, totalVenta: 12000, fechaVenta: new Date("2024-11-13"), metodoPago: "Transferencia" },
+    { numeroVenta: "V014", idEmpleadoFK: "52883378", idClienteFK: "753159843", codigoProductoFK: "J14L2", cantidadVenta: 5, precioUnitario: 18000, totalVenta: 90000, fechaVenta: new Date("2024-11-14"), metodoPago: "Efectivo" },
+    { numeroVenta: "V015", idEmpleadoFK: "1016954734", idClienteFK: "159753786", codigoProductoFK: "J15L2", cantidadVenta: 4, precioUnitario: 50000, totalVenta: 200000, fechaVenta: new Date("2024-11-15"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V016", idEmpleadoFK: "1001316474", idClienteFK: "789458123", codigoProductoFK: "J16L2", cantidadVenta: 3, precioUnitario: 70000, totalVenta: 210000, fechaVenta: new Date("2024-11-16"), metodoPago: "Transferencia" },
+    { numeroVenta: "V017", idEmpleadoFK: "79485725", idClienteFK: "987254321", codigoProductoFK: "J17L2", cantidadVenta: 1, precioUnitario: 80000, totalVenta: 80000, fechaVenta: new Date("2024-11-17"), metodoPago: "Efectivo" },
+    { numeroVenta: "V018", idEmpleadoFK: "52883378", idClienteFK: "664321789", codigoProductoFK: "J18L2", cantidadVenta: 3, precioUnitario: 50000, totalVenta: 150000, fechaVenta: new Date("2024-11-18"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V019", idEmpleadoFK: "1016954734", idClienteFK: "753159843", codigoProductoFK: "J19L2", cantidadVenta: 4, precioUnitario: 12000, totalVenta: 48000, fechaVenta: new Date("2024-11-19"), metodoPago: "Transferencia" },
+    { numeroVenta: "V020", idEmpleadoFK: "1001316474", idClienteFK: "159753786", codigoProductoFK: "J20L2", cantidadVenta: 2, precioUnitario: 25000, totalVenta: 50000, fechaVenta: new Date("2024-11-20"), metodoPago: "Efectivo" },
+    { numeroVenta: "V021", idEmpleadoFK: "79485725", idClienteFK: "328654987", codigoProductoFK: "J21L2", cantidadVenta: 3, precioUnitario: 15000, totalVenta: 45000, fechaVenta: new Date("2024-11-21"), metodoPago: "Transferencia" },
+    { numeroVenta: "V022", idEmpleadoFK: "52883378", idClienteFK: "664321789", codigoProductoFK: "J22L2", cantidadVenta: 4, precioUnitario: 25000, totalVenta: 100000, fechaVenta: new Date("2024-11-22"), metodoPago: "Efectivo" },
+    { numeroVenta: "V023", idEmpleadoFK: "1016954734", idClienteFK: "987254321", codigoProductoFK: "J23L2", cantidadVenta: 5, precioUnitario: 40000, totalVenta: 200000, fechaVenta: new Date("2024-11-23"), metodoPago: "Tarjeta" },
+    { numeroVenta: "V024", idEmpleadoFK: "1001316474", idClienteFK: "159753786", codigoProductoFK: "J24L2", cantidadVenta: 2, precioUnitario: 20000, totalVenta: 40000, fechaVenta: new Date("2024-11-24"), metodoPago: "Efectivo" },
+    { numeroVenta: "V025", idEmpleadoFK: "79485725", idClienteFK: "328654987", codigoProductoFK: "J25L2", cantidadVenta: 3, precioUnitario: 30000, totalVenta: 90000, fechaVenta: new Date("2024-11-25"), metodoPago: "Transferencia" },
+    { numeroVenta: "V026", idEmpleadoFK: "52883378", idClienteFK: "753159843", codigoProductoFK: "J26L2", cantidadVenta: 2, precioUnitario: 70000, totalVenta: 140000, fechaVenta: new Date("2024-11-26"), metodoPago: "Tarjeta" }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('674385e8dda0c92a5728101a'),
+    '1': ObjectId('674385e8dda0c92a5728101b'),
+    '2': ObjectId('674385e8dda0c92a5728101c'),
+    '3': ObjectId('674385e8dda0c92a5728101d'),
+    '4': ObjectId('674385e8dda0c92a5728101e'),
+    '5': ObjectId('674385e8dda0c92a5728101f'),
+    '6': ObjectId('674385e8dda0c92a57281020'),
+    '7': ObjectId('674385e8dda0c92a57281021'),
+    '8': ObjectId('674385e8dda0c92a57281022'),
+    '9': ObjectId('674385e8dda0c92a57281023'),
+    '10': ObjectId('674385e8dda0c92a57281024'),
+    '11': ObjectId('674385e8dda0c92a57281025'),
+    '12': ObjectId('674385e8dda0c92a57281026'),
+    '13': ObjectId('674385e8dda0c92a57281027'),
+    '14': ObjectId('674385e8dda0c92a57281028'),
+    '15': ObjectId('674385e8dda0c92a57281029'),
+    '16': ObjectId('674385e8dda0c92a5728102a'),
+    '17': ObjectId('674385e8dda0c92a5728102b'),
+    '18': ObjectId('674385e8dda0c92a5728102c'),
+    '19': ObjectId('674385e8dda0c92a5728102d'),
+    '20': ObjectId('674385e8dda0c92a5728102e'),
+    '21': ObjectId('674385e8dda0c92a5728102f'),
+    '22': ObjectId('674385e8dda0c92a57281030'),
+    '23': ObjectId('674385e8dda0c92a57281031'),
+    '24': ObjectId('674385e8dda0c92a57281032'),
+    '25': ObjectId('674385e8dda0c92a57281033')
+  }
+}
+
+db.cliente.find(
+    { fechaNacimientoCliente: { $gt: new Date("1990-01-01") } },
+    { nombreCliente: 1, fechaNacimientoCliente: 1 }
+);
+{
+  _id: ObjectId('67438392dda0c92a57280fcd'),
+  nombreCliente: 'Camilo',
+  fechaNacimientoCliente: 1992-09-16T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd0'),
+  nombreCliente: 'María',
+  fechaNacimientoCliente: 1990-07-22T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd2'),
+  nombreCliente: 'Ana',
+  fechaNacimientoCliente: 1995-05-25T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd4'),
+  nombreCliente: 'Laura',
+  fechaNacimientoCliente: 1992-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd6'),
+  nombreCliente: 'Sofía',
+  fechaNacimientoCliente: 1993-08-20T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd8'),
+  nombreCliente: 'Valentina',
+  fechaNacimientoCliente: 1994-10-18T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fda'),
+  nombreCliente: 'Isabella',
+  fechaNacimientoCliente: 1991-01-12T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdc'),
+  nombreCliente: 'Camila',
+  fechaNacimientoCliente: 1992-03-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fde'),
+  nombreCliente: 'Natalia',
+  fechaNacimientoCliente: 1990-05-30T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe0'),
+  nombreCliente: 'Lucía',
+  fechaNacimientoCliente: 1993-12-08T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe4'),
+  nombreCliente: 'Diana',
+  fechaNacimientoCliente: 1995-01-15T00:00:00.000Z
+}
+
+db.cliente.find(
+    { apellidoCliente: "García" }
+);
+{
+  _id: ObjectId('67438392dda0c92a57280fd5'),
+  cedulaCliente: '159753786',
+  nombreCliente: 'Luis',
+  apellidoCliente: 'García',
+  correoElectronico: 'luisg@gmail.com',
+  telefonoCliente: '3191239876',
+  fechaRegistroCliente: 2024-07-21T00:00:00.000Z,
+  fechaNacimientoCliente: 1987-06-05T00:00:00.000Z,
+  generoCliente: 'Masculino',
+  estadoCliente: 'Activo'
+}
+
+db.cliente.countDocuments(
+    { apellidoCliente: "Pérez" }
+);
+2
+
+db.cliente.find(
+    { cedulaCliente: /^1/ },
+    { apellidoCliente: 1, idCliente: 1 }
+);
+{
+  _id: ObjectId('67438392dda0c92a57280fcf'),
+  apellidoCliente: 'Pérez'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd5'),
+  apellidoCliente: 'García'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd9'),
+  apellidoCliente: 'Mendoza'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdc'),
+  apellidoCliente: 'Salazar'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdf'),
+  apellidoCliente: 'Cárdenas'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe2'),
+  apellidoCliente: 'Torres'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe5'),
+  apellidoCliente: 'Patiño'
+}
+
+db.cliente.find(
+    { telefonoCliente: /^3/ },
+    { telefonoCliente: 1 }
+);
+{
+  _id: ObjectId('67438392dda0c92a57280fcd'),
+  telefonoCliente: '3161237890'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fce'),
+  telefonoCliente: '3179876542'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fcf'),
+  telefonoCliente: '3148765432'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd0'),
+  telefonoCliente: '3129876543'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd1'),
+  telefonoCliente: '3104567891'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd2'),
+  telefonoCliente: '3151234567'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd3'),
+  telefonoCliente: '3176543210'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd4'),
+  telefonoCliente: '3189876543'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd5'),
+  telefonoCliente: '3191239876'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd6'),
+  telefonoCliente: '3143216789'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd7'),
+  telefonoCliente: '3107891234'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd8'),
+  telefonoCliente: '3159871234'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd9'),
+  telefonoCliente: '3198765432'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fda'),
+  telefonoCliente: '3126549870'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdb'),
+  telefonoCliente: '3141592653'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdc'),
+  telefonoCliente: '3177531598'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdd'),
+  telefonoCliente: '3182468135'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fde'),
+  telefonoCliente: '3193214789'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdf'),
+  telefonoCliente: '3157896541'
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe0'),
+  telefonoCliente: '3172589643'
+}
+
+db.cliente.find(
+    {},
+    { fechaNacimientoCliente: 1 }
+).sort(
+    { fechaNacimientoCliente: 1 }
+);
+{
+  _id: ObjectId('67438392dda0c92a57280fe3'),
+  fechaNacimientoCliente: 1980-06-21T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd3'),
+  fechaNacimientoCliente: 1980-09-30T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdf'),
+  fechaNacimientoCliente: 1981-09-19T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd9'),
+  fechaNacimientoCliente: 1983-04-27T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdd'),
+  fechaNacimientoCliente: 1984-07-15T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe1'),
+  fechaNacimientoCliente: 1985-02-27T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fcf'),
+  fechaNacimientoCliente: 1985-03-15T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdb'),
+  fechaNacimientoCliente: 1986-11-23T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe5'),
+  fechaNacimientoCliente: 1987-04-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd5'),
+  fechaNacimientoCliente: 1987-06-05T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fce'),
+  fechaNacimientoCliente: 1988-11-04T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd1'),
+  fechaNacimientoCliente: 1988-11-10T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fe2'),
+  fechaNacimientoCliente: 1989-10-03T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd7'),
+  fechaNacimientoCliente: 1989-12-01T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fde'),
+  fechaNacimientoCliente: 1990-05-30T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd0'),
+  fechaNacimientoCliente: 1990-07-22T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fda'),
+  fechaNacimientoCliente: 1991-01-12T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fd4'),
+  fechaNacimientoCliente: 1992-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fdc'),
+  fechaNacimientoCliente: 1992-03-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('67438392dda0c92a57280fcd'),
+  fechaNacimientoCliente: 1992-09-16T00:00:00.000Z
+}
+
+db.cliente.updateOne(
+    { idCliente: 27 },
+    { $set: { telefonoCliente: "3156543210" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.cliente.updateOne(
+    { idCliente: 47 },
+    { $set: { apellidoCliente: "Martínez" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.cliente.updateOne(
+    { idCliente: 32 },
+    { $set: { fechaNacimientoCliente: new Date("1980-01-01") } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.cliente.updateOne(
+    { idCliente: 4 },
+    { $set: { nombreCliente: "Luis", apellidoCliente: "Pérez" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.cliente.updateOne(
+    { idCliente: 13 },
+    { $set: { telefonoCliente: "3186478546" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.cliente.deleteOne(
+    { idCliente: 50 }
+);
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+
+db.producto.find({});
+{
+  _id: ObjectId('67438476dda0c92a57280fed'),
+  codigoProducto: 'J01L2',
+  nombreProducto: 'Bolirana',
+  descripcionProducto: 'Bolirana con tablero y 6 esferas',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 200000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fee'),
+  codigoProducto: 'J02L2',
+  nombreProducto: 'Rana con brazos',
+  descripcionProducto: 'Rana con tablero y 6 argollas',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 175000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fef'),
+  codigoProducto: 'J03L2',
+  nombreProducto: 'Futbolín',
+  descripcionProducto: 'Futbolín de mesa con 2 balones',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 80000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff0'),
+  codigoProducto: 'J04L2',
+  nombreProducto: 'Tablero de rana',
+  descripcionProducto: 'Marcador de conteo para las ranas y boliranas',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 5000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff1'),
+  codigoProducto: 'J05L2',
+  nombreProducto: 'Por qué siempre yo? EX',
+  descripcionProducto: 'Por qué siempre yo de cilindros',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 40000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff2'),
+  codigoProducto: 'J06L2',
+  nombreProducto: 'Por qué siempre yo?',
+  descripcionProducto: 'Por qué siempre yo de canicas con un espacio',
+  stockProducto: 4,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 5,
+  precioEntrada: 7000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff3'),
+  codigoProducto: 'J07L2',
+  nombreProducto: 'Por qué siempre yo? EXO',
+  descripcionProducto: 'Por qué siempre yo extremo',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 10000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff4'),
+  codigoProducto: 'J08L2',
+  nombreProducto: 'Por qué siempre yo? CA',
+  descripcionProducto: 'Por qué siempre yo de canicas',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 10000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff5'),
+  codigoProducto: 'J09L2',
+  nombreProducto: 'Por qué siempre yo? CO',
+  descripcionProducto: 'Por qué siempre yo de El Colibri',
+  stockProducto: 5,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 3,
+  precioEntrada: 25000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff6'),
+  codigoProducto: 'J10L2',
+  nombreProducto: 'Por qué siempre yo? IO',
+  descripcionProducto: 'Por qué siempre yo de Iokus',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 1,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff7'),
+  codigoProducto: 'J11L2',
+  nombreProducto: 'Cierre la caja grande',
+  descripcionProducto: 'Cierre la caja de números con dados',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 5,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff8'),
+  codigoProducto: 'J12L2',
+  nombreProducto: 'Cierre la caja pequeño',
+  descripcionProducto: 'Cierre la caja de números con dados',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 5,
+  precioEntrada: 30000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff9'),
+  codigoProducto: 'J13L2',
+  nombreProducto: 'Triqui ratón y queso',
+  descripcionProducto: 'Triqui con ratones y quesos. 4 ratones y 4 quesos',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 3,
+  precioEntrada: 12000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffa'),
+  codigoProducto: 'J14L2',
+  nombreProducto: 'Cucaracha de imán',
+  descripcionProducto: 'Cucaracha con fichas de imán 7 tableros',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 6,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffb'),
+  codigoProducto: 'J15L2',
+  nombreProducto: 'Cucaracha de chinches',
+  descripcionProducto: 'Cucaracha con fichas de chinche 7 tableros',
+  stockProducto: 4,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 7,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffc'),
+  codigoProducto: 'J16L2',
+  nombreProducto: 'Cucaracha de plástico',
+  descripcionProducto: 'Cucaracha con fichas de plástico 7 tableros',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 6,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffd'),
+  codigoProducto: 'J17L2',
+  nombreProducto: 'Cucaracha Jadake',
+  descripcionProducto: 'Cucaracha fichas de madera con 7 tableros',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 1,
+  precioEntrada: 80000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffe'),
+  codigoProducto: 'J18L2',
+  nombreProducto: 'Jenga original',
+  descripcionProducto: 'Jenga caja y fichas originales',
+  stockProducto: 1,
+  fechaEntrada: 2024-12-20T00:00:00.000Z,
+  idProveedorFK: 5,
+  precioEntrada: 50000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fff'),
+  codigoProducto: 'J19L2',
+  nombreProducto: 'Jenga rojo',
+  descripcionProducto: 'Jenga natural y de colores',
+  stockProducto: 4,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 7,
+  precioEntrada: 12000
+}
+{
+  _id: ObjectId('67438476dda0c92a57281000'),
+  codigoProducto: 'J20L2',
+  nombreProducto: 'Siete loco',
+  descripcionProducto: 'Siete loco con 7 tableros y fichas',
+  stockProducto: 4,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 5,
+  precioEntrada: 15000
+}
+
+db.producto.find(
+    { stockProducto: { $gt: 50 } }
+);
+
+db.producto.find(
+    { nombreProducto: /cucaracha/i }
+);
+{
+  _id: ObjectId('67438476dda0c92a57280ffa'),
+  codigoProducto: 'J14L2',
+  nombreProducto: 'Cucaracha de imán',
+  descripcionProducto: 'Cucaracha con fichas de imán 7 tableros',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 6,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffb'),
+  codigoProducto: 'J15L2',
+  nombreProducto: 'Cucaracha de chinches',
+  descripcionProducto: 'Cucaracha con fichas de chinche 7 tableros',
+  stockProducto: 4,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 7,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffc'),
+  codigoProducto: 'J16L2',
+  nombreProducto: 'Cucaracha de plástico',
+  descripcionProducto: 'Cucaracha con fichas de plástico 7 tableros',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 6,
+  precioEntrada: 45000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffd'),
+  codigoProducto: 'J17L2',
+  nombreProducto: 'Cucaracha Jadake',
+  descripcionProducto: 'Cucaracha fichas de madera con 7 tableros',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 1,
+  precioEntrada: 80000
+}
+{
+  _id: ObjectId('67438476dda0c92a57281001'),
+  codigoProducto: 'J21L2',
+  nombreProducto: 'Cucaracha Jadake',
+  descripcionProducto: 'Cucaracha fichas de madera con 7 tableros',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 1,
+  precioEntrada: 80000
+}
+
+db.producto.find(
+    { precioUnidadProducto: { $gt: 100000 } },
+    { nombreProducto: 1, precioUnidadProducto: 1 }
+);
+
+db.producto.find(
+    { stockProducto: { $gte: 10, $lte: 30 } },
+    { stockProducto: 1, nombreProducto: 1 }
+);
+
+db.producto.find(
+    {},
+    { precioUnidadProducto: 1 }
+).sort(
+    { precioUnidadProducto: -1 }
+);
+{
+  _id: ObjectId('67438476dda0c92a57280fed')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fee')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fef')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff0')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff1')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff2')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff3')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff4')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff5')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff6')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff7')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff8')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff9')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffa')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffb')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffc')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffd')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ffe')
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fff')
+}
+{
+  _id: ObjectId('67438476dda0c92a57281000')
+}
+
+db.producto.find(
+    {}
+).sort(
+    { precioUnidadProducto: 1 }
+).limit(5);
+{
+  _id: ObjectId('67438476dda0c92a57280ff0'),
+  codigoProducto: 'J04L2',
+  nombreProducto: 'Tablero de rana',
+  descripcionProducto: 'Marcador de conteo para las ranas y boliranas',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 5000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280ff1'),
+  codigoProducto: 'J05L2',
+  nombreProducto: 'Por qué siempre yo? EX',
+  descripcionProducto: 'Por qué siempre yo de cilindros',
+  stockProducto: 3,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 40000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fee'),
+  codigoProducto: 'J02L2',
+  nombreProducto: 'Rana con brazos',
+  descripcionProducto: 'Rana con tablero y 6 argollas',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 175000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fed'),
+  codigoProducto: 'J01L2',
+  nombreProducto: 'Bolirana',
+  descripcionProducto: 'Bolirana con tablero y 6 esferas',
+  stockProducto: 1,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 200000
+}
+{
+  _id: ObjectId('67438476dda0c92a57280fef'),
+  codigoProducto: 'J03L2',
+  nombreProducto: 'Futbolín',
+  descripcionProducto: 'Futbolín de mesa con 2 balones',
+  stockProducto: 2,
+  fechaEntrada: 2024-10-12T00:00:00.000Z,
+  idProveedorFK: 4,
+  precioEntrada: 80000
+}
+
+db.producto.countDocuments(
+    { stockProducto: { $lt: 50 } }
+);
+41
+
+db.producto.updateOne(
+    { idProducto: 7 },
+    { $set: { precioUnidadProducto: 55000 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.producto.updateOne(
+    { idProducto: 30 },
+    { $inc: { stockProducto: 15 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.producto.updateOne(
+    { idProducto: 27 },
+    { $set: { descripcionProducto: "Cubo Rubik" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.producto.updateOne(
+    { idProducto: 49 },
+    { $set: { nombreProducto: "Cucaracha 1" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.producto.updateMany(
+    {},
+    { $mul: { precioUnidadProducto: 0.9 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 41,
+  modifiedCount: 41,
+  upsertedCount: 0
+}
+
+db.producto.deleteOne(
+    { idProducto: 50 }
+);
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+
+db.usuario.find({});
+{
+  _id: ObjectId('674384cbdda0c92a57281016'),
+  cedulaEmpleadoFK: '79485725',
+  nombreUsuario: 'Mauricio Bermúdez',
+  'contraseñaUsuario': 'MauBer',
+  rolUsuario: 'CEO',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281017'),
+  cedulaEmpleadoFK: '52883378',
+  nombreUsuario: 'Diana Tabares',
+  'contraseñaUsuario': 'DianaZu',
+  rolUsuario: 'Administrador',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281018'),
+  cedulaEmpleadoFK: '1016954734',
+  nombreUsuario: 'Sarah Díaz',
+  'contraseñaUsuario': 'SarahDi',
+  rolUsuario: 'Vendedor',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281019'),
+  cedulaEmpleadoFK: '1001316474',
+  nombreUsuario: 'Prince Bermúdez',
+  'contraseñaUsuario': 'PrinceBe',
+  rolUsuario: 'Vendedor',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+
+db.usuario.find(
+    { rolUsuario: "Vendedor" },
+    { nombreUsuario: 1 }
+);
+{
+  _id: ObjectId('674384cbdda0c92a57281018'),
+  nombreUsuario: 'Sarah Díaz'
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281019'),
+  nombreUsuario: 'Prince Bermúdez'
+}
+
+db.usuario.find(
+    { cedulaUsuario: /^1/ },
+    { cedulaUsuario: 1 }
+);
+
+db.usuario.find(
+    { nombreUsuario: /^M/ },
+    { rolUsuario: 1 }
+);
+{
+  _id: ObjectId('674384cbdda0c92a57281016'),
+  rolUsuario: 'CEO'
+}
+
+db.usuario.find(
+    { rolUsuario: "Administrador" },
+    { nombreUsuario: 1, idUsuario: 1 }
+);
+{
+  _id: ObjectId('674384cbdda0c92a57281017'),
+  nombreUsuario: 'Diana Tabares'
+}
+
+db.usuario.countDocuments(
+    { rolUsuario: "Vendedor" }
+);
+{}
+2
+
+db.usuario.find(
+    {}
+).sort(
+    { idUsuario: -1 }
+);
+{
+  _id: ObjectId('674384cbdda0c92a57281016'),
+  cedulaEmpleadoFK: '79485725',
+  nombreUsuario: 'Mauricio Bermúdez',
+  'contraseñaUsuario': 'MauBer',
+  rolUsuario: 'CEO',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281017'),
+  cedulaEmpleadoFK: '52883378',
+  nombreUsuario: 'Diana Tabares',
+  'contraseñaUsuario': 'DianaZu',
+  rolUsuario: 'Administrador',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281018'),
+  cedulaEmpleadoFK: '1016954734',
+  nombreUsuario: 'Sarah Díaz',
+  'contraseñaUsuario': 'SarahDi',
+  rolUsuario: 'Vendedor',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+{
+  _id: ObjectId('674384cbdda0c92a57281019'),
+  cedulaEmpleadoFK: '1001316474',
+  nombreUsuario: 'Prince Bermúdez',
+  'contraseñaUsuario': 'PrinceBe',
+  rolUsuario: 'Vendedor',
+  estadoUsuario: 'Activo',
+  fechaCreacion: 2024-11-11T00:00:00.000Z
+}
+
+db.usuario.updateOne(
+    { idUsuario: 4 },
+    { $set: { cedulaUsuario: "1001316478" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.usuario.updateOne(
+    { idUsuario: 3 },
+    { $set: { rolUsuario: "Administrador" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.usuario.updateOne(
+    { idUsuario: 4 },
+    { $set: { nombreUsuario: "Nicolás Bermudez" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.usuario.updateOne(
+    { idUsuario: 3 },
+    { $set: { nombreUsuario: "Ernesto Rabadilla" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.usuario.deleteOne(
+    { idUsuario: 4 }
+);
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+
+db.proveedor.find({});
+{
+  _id: ObjectId('67438416dda0c92a57280fe6'),
+  nombreProveedor: 'Ditri JO',
+  contactoNombreProveedor: 'Esperanza Rojas',
+  correoElectronicoProveedor: 'esperanz.rojas@distrijo.com',
+  telefonoProveedor: '3044868659',
+  direccionProveedor: 'Calle 19',
+  ciudadProveedor: 'Bogotá',
+  fechaRegistro: 2023-03-11T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe7'),
+  nombreProveedor: 'Jadake',
+  contactoNombreProveedor: 'Andrés López',
+  correoElectronicoProveedor: 'andres.lopez@jadake.com',
+  telefonoProveedor: '3001234567',
+  direccionProveedor: 'Calle 20',
+  ciudadProveedor: 'Santa Rosa de Cabal',
+  fechaRegistro: 2023-03-01T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe8'),
+  nombreProveedor: 'Iokus',
+  contactoNombreProveedor: 'María Pérez',
+  correoElectronicoProveedor: 'maria.perez@iokus.com',
+  telefonoProveedor: '3002345678',
+  direccionProveedor: 'Avenida 31',
+  ciudadProveedor: 'Finlandia, Quindío',
+  fechaRegistro: 2023-04-22T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe9'),
+  nombreProveedor: 'Martín',
+  contactoNombreProveedor: 'Javier Díaz',
+  correoElectronicoProveedor: 'javier.diaz@martin.com',
+  telefonoProveedor: '3003456789',
+  direccionProveedor: 'Calle 26',
+  ciudadProveedor: 'Bogotá',
+  fechaRegistro: 2023-05-01T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fea'),
+  nombreProveedor: 'Maderandia',
+  contactoNombreProveedor: 'Laura Ríos',
+  correoElectronicoProveedor: 'laura.rios@maderandia.com',
+  telefonoProveedor: '3004567890',
+  direccionProveedor: 'Avenida 57',
+  ciudadProveedor: 'Pereira',
+  fechaRegistro: 2023-05-24T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280feb'),
+  nombreProveedor: 'Oscar Juguetero',
+  contactoNombreProveedor: 'Oscar Jiménez',
+  correoElectronicoProveedor: 'oscar.jimenez@oscarjuguetero.com',
+  telefonoProveedor: '3005678901',
+  direccionProveedor: 'Avenida 97',
+  ciudadProveedor: 'Bogotá (Engativá)',
+  fechaRegistro: 2023-09-08T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fec'),
+  nombreProveedor: 'Dlego',
+  contactoNombreProveedor: 'Diego Martínez',
+  correoElectronicoProveedor: 'diego.martinez@dlego.com',
+  telefonoProveedor: '3006789012',
+  direccionProveedor: 'Calle 13',
+  ciudadProveedor: 'Bogotá (San Victorino)',
+  fechaRegistro: 2023-10-27T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+
+db.proveedor.find(
+    { nombreProveedor: "JO" }
+);
+
+db.proveedor.find(
+    { direccionProveedor: /Calle/i }
+);
+{
+  _id: ObjectId('67438416dda0c92a57280fe6'),
+  nombreProveedor: 'Ditri JO',
+  contactoNombreProveedor: 'Esperanza Rojas',
+  correoElectronicoProveedor: 'esperanz.rojas@distrijo.com',
+  telefonoProveedor: '3044868659',
+  direccionProveedor: 'Calle 19',
+  ciudadProveedor: 'Bogotá',
+  fechaRegistro: 2023-03-11T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe7'),
+  nombreProveedor: 'Jadake',
+  contactoNombreProveedor: 'Andrés López',
+  correoElectronicoProveedor: 'andres.lopez@jadake.com',
+  telefonoProveedor: '3001234567',
+  direccionProveedor: 'Calle 20',
+  ciudadProveedor: 'Santa Rosa de Cabal',
+  fechaRegistro: 2023-03-01T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe9'),
+  nombreProveedor: 'Martín',
+  contactoNombreProveedor: 'Javier Díaz',
+  correoElectronicoProveedor: 'javier.diaz@martin.com',
+  telefonoProveedor: '3003456789',
+  direccionProveedor: 'Calle 26',
+  ciudadProveedor: 'Bogotá',
+  fechaRegistro: 2023-05-01T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fec'),
+  nombreProveedor: 'Dlego',
+  contactoNombreProveedor: 'Diego Martínez',
+  correoElectronicoProveedor: 'diego.martinez@dlego.com',
+  telefonoProveedor: '3006789012',
+  direccionProveedor: 'Calle 13',
+  ciudadProveedor: 'Bogotá (San Victorino)',
+  fechaRegistro: 2023-10-27T00:00:00.000Z,
+  estadoProveedor: 'Activo'
+}
+
+db.proveedor.find(
+    { ciudadProveedor: "Bogotá" },
+    { nombreProveedor: 1, ciudadProveedor: 1 }
+);
+{
+  _id: ObjectId('67438416dda0c92a57280fe6'),
+  nombreProveedor: 'Ditri JO',
+  ciudadProveedor: 'Bogotá'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe9'),
+  nombreProveedor: 'Martín',
+  ciudadProveedor: 'Bogotá'
+}
+
+db.proveedor.find(
+    { ciudadProveedor: "Santa Rosa de Cabal" },
+    { idProveedor: 1 }
+);
+{
+  _id: ObjectId('67438416dda0c92a57280fe7')
+}
+
+db.proveedor.find(
+    {},
+    { nombreProveedor: 1 }
+).sort(
+    { nombreProveedor: 1 }
+);
+{
+  _id: ObjectId('67438416dda0c92a57280fe6'),
+  nombreProveedor: 'Ditri JO'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fec'),
+  nombreProveedor: 'Dlego'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe8'),
+  nombreProveedor: 'Iokus'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe7'),
+  nombreProveedor: 'Jadake'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fea'),
+  nombreProveedor: 'Maderandia'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280fe9'),
+  nombreProveedor: 'Martín'
+}
+{
+  _id: ObjectId('67438416dda0c92a57280feb'),
+  nombreProveedor: 'Oscar Juguetero'
+}
+
+db.proveedor.updateOne(
+    { idProveedor: 5 },
+    { $set: { direccionProveedor: "Transversal 6" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.proveedor.updateOne(
+    { idProveedor: 2 },
+    { $set: { ciudadProveedor: "Cali" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.proveedor.updateOne(
+    { idProveedor: 3 },
+    { $set: { nombreProveedor: "KidOToy" } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+db.proveedor.deleteOne(
+    { idProveedor: 9 }
+);
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+
+db.venta.find({});
+{
+  _id: ObjectId('674385e8dda0c92a5728101a'),
+  numeroVenta: 'V001',
+  idEmpleadoFK: '79485725',
+  idClienteFK: '345678912',
+  codigoProductoFK: 'J01L2',
+  cantidadVenta: 2,
+  precioUnitario: 200000,
+  totalVenta: 400000,
+  fechaVenta: 2024-11-01T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101b'),
+  numeroVenta: 'V002',
+  idEmpleadoFK: '52883378',
+  idClienteFK: '456789123',
+  codigoProductoFK: 'J02L2',
+  cantidadVenta: 1,
+  precioUnitario: 175000,
+  totalVenta: 175000,
+  fechaVenta: 2024-11-02T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101c'),
+  numeroVenta: 'V003',
+  idEmpleadoFK: '1016954734',
+  idClienteFK: '123476789',
+  codigoProductoFK: 'J03L2',
+  cantidadVenta: 5,
+  precioUnitario: 80000,
+  totalVenta: 400000,
+  fechaVenta: 2024-11-03T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101d'),
+  numeroVenta: 'V004',
+  idEmpleadoFK: '1001316474',
+  idClienteFK: '987254321',
+  codigoProductoFK: 'J04L2',
+  cantidadVenta: 3,
+  precioUnitario: 5000,
+  totalVenta: 15000,
+  fechaVenta: 2024-11-04T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101e'),
+  numeroVenta: 'V005',
+  idEmpleadoFK: '79485725',
+  idClienteFK: '456323789',
+  codigoProductoFK: 'J05L2',
+  cantidadVenta: 1,
+  precioUnitario: 40000,
+  totalVenta: 40000,
+  fechaVenta: 2024-11-05T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101f'),
+  numeroVenta: 'V006',
+  idEmpleadoFK: '52883378',
+  idClienteFK: '328654987',
+  codigoProductoFK: 'J06L2',
+  cantidadVenta: 3,
+  precioUnitario: 7000,
+  totalVenta: 21000,
+  fechaVenta: 2024-11-06T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281020'),
+  numeroVenta: 'V007',
+  idEmpleadoFK: '1016954734',
+  idClienteFK: '664321789',
+  codigoProductoFK: 'J07L2',
+  cantidadVenta: 4,
+  precioUnitario: 10000,
+  totalVenta: 40000,
+  fechaVenta: 2024-11-07T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281021'),
+  numeroVenta: 'V008',
+  idEmpleadoFK: '1001316474',
+  idClienteFK: '789458123',
+  codigoProductoFK: 'J08L2',
+  cantidadVenta: 2,
+  precioUnitario: 10000,
+  totalVenta: 20000,
+  fechaVenta: 2024-11-08T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281022'),
+  numeroVenta: 'V009',
+  idEmpleadoFK: '79485725',
+  idClienteFK: '159753786',
+  codigoProductoFK: 'J09L2',
+  cantidadVenta: 1,
+  precioUnitario: 25000,
+  totalVenta: 25000,
+  fechaVenta: 2024-11-09T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281023'),
+  numeroVenta: 'V010',
+  idEmpleadoFK: '52883378',
+  idClienteFK: '753159843',
+  codigoProductoFK: 'J10L2',
+  cantidadVenta: 3,
+  precioUnitario: 45000,
+  totalVenta: 135000,
+  fechaVenta: 2024-11-10T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281024'),
+  numeroVenta: 'V011',
+  idEmpleadoFK: '1016954734',
+  idClienteFK: '987254321',
+  codigoProductoFK: 'J11L2',
+  cantidadVenta: 2,
+  precioUnitario: 45000,
+  totalVenta: 90000,
+  fechaVenta: 2024-11-11T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281025'),
+  numeroVenta: 'V012',
+  idEmpleadoFK: '1001316474',
+  idClienteFK: '159753786',
+  codigoProductoFK: 'J12L2',
+  cantidadVenta: 3,
+  precioUnitario: 5000,
+  totalVenta: 15000,
+  fechaVenta: 2024-11-12T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281026'),
+  numeroVenta: 'V013',
+  idEmpleadoFK: '79485725',
+  idClienteFK: '664321789',
+  codigoProductoFK: 'J13L2',
+  cantidadVenta: 1,
+  precioUnitario: 12000,
+  totalVenta: 12000,
+  fechaVenta: 2024-11-13T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281027'),
+  numeroVenta: 'V014',
+  idEmpleadoFK: '52883378',
+  idClienteFK: '753159843',
+  codigoProductoFK: 'J14L2',
+  cantidadVenta: 5,
+  precioUnitario: 18000,
+  totalVenta: 90000,
+  fechaVenta: 2024-11-14T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281028'),
+  numeroVenta: 'V015',
+  idEmpleadoFK: '1016954734',
+  idClienteFK: '159753786',
+  codigoProductoFK: 'J15L2',
+  cantidadVenta: 4,
+  precioUnitario: 50000,
+  totalVenta: 200000,
+  fechaVenta: 2024-11-15T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281029'),
+  numeroVenta: 'V016',
+  idEmpleadoFK: '1001316474',
+  idClienteFK: '789458123',
+  codigoProductoFK: 'J16L2',
+  cantidadVenta: 3,
+  precioUnitario: 70000,
+  totalVenta: 210000,
+  fechaVenta: 2024-11-16T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728102a'),
+  numeroVenta: 'V017',
+  idEmpleadoFK: '79485725',
+  idClienteFK: '987254321',
+  codigoProductoFK: 'J17L2',
+  cantidadVenta: 1,
+  precioUnitario: 80000,
+  totalVenta: 80000,
+  fechaVenta: 2024-11-17T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728102b'),
+  numeroVenta: 'V018',
+  idEmpleadoFK: '52883378',
+  idClienteFK: '664321789',
+  codigoProductoFK: 'J18L2',
+  cantidadVenta: 3,
+  precioUnitario: 50000,
+  totalVenta: 150000,
+  fechaVenta: 2024-11-18T00:00:00.000Z,
+  metodoPago: 'Tarjeta'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728102c'),
+  numeroVenta: 'V019',
+  idEmpleadoFK: '1016954734',
+  idClienteFK: '753159843',
+  codigoProductoFK: 'J19L2',
+  cantidadVenta: 4,
+  precioUnitario: 12000,
+  totalVenta: 48000,
+  fechaVenta: 2024-11-19T00:00:00.000Z,
+  metodoPago: 'Transferencia'
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728102d'),
+  numeroVenta: 'V020',
+  idEmpleadoFK: '1001316474',
+  idClienteFK: '159753786',
+  codigoProductoFK: 'J20L2',
+  cantidadVenta: 2,
+  precioUnitario: 25000,
+  totalVenta: 50000,
+  fechaVenta: 2024-11-20T00:00:00.000Z,
+  metodoPago: 'Efectivo'
+}
+
+db.venta.find(
+    { totalVenta: { $gt: 200000 } },
+    { idUsuarioFK: 1 }
+);
+{
+  _id: ObjectId('674385e8dda0c92a5728101a')
+}
+{
+  _id: ObjectId('674385e8dda0c92a5728101c')
+}
+{
+  _id: ObjectId('674385e8dda0c92a57281029')
+}
+
+db.venta.find(
+    { fechaVenta: { $gte: new Date("2024-01-01"), $lte: new Date("2024-10-05") } },
+    { numeroVenta: 1 }
+);
+
+db.venta.find(
+    { idClienteFK: 27 }
+);
+
+db.venta.find(
+    { idUsuarioFK: 1 },
+    { numeroVenta: 1 }
+);
+
+db.venta.aggregate([
+    { $match: { fechaVenta: { $gt: new Date("2024-10-24") } } },
+    { $group: { _id: null, total_vendido: { $sum: "$totalVenta" } } }
+]);
+{
+  _id: null,
+  total_vendido: 2831000
+}
+
+db.venta.countDocuments(
+    { idUsuarioFK: 3 }
+);
+0
+
+db.venta.updateOne(
+    { numeroVenta: "V001" },
+    { $mul: { totalVenta: 0.9 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.venta.updateOne(
+    { numeroVenta: "V003" },
+    { $set: { idUsuarioFK: 2 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.venta.updateOne(
+    { numeroVenta: "V005" },
+    { $set: { idClienteFK: 4 } }
+);
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.venta.deleteOne(
+    { numeroVenta: "V040" }
+);
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+
+db.cliente.aggregate([
+    {
+        $lookup: {
+            from: "venta",
+            localField: "idCliente", 
+            foreignField: "idClienteFK",
+            as: "ventas"
+        }
+    },
+    {
+        $unwind: "$ventas"
+    },
+    {
+        $match: {
+            "ventas.fechaVenta": { $gt: new Date("2024-10-20") }
+        }
+    },
+    {
+        $project: {
+            nombreCliente: 1
+        }
+    }
+]);
+
+db.producto.aggregate([
+    {
+        $group: {
+            _id: null,
+            avgStock: { $avg: "$stockProducto" }
+        }
+    },
+    {
+        $lookup: {
+            from: "producto",
+            pipeline: [
+                { $match: { stockProducto: { $lt: "$avgStock" } } },
+                { $project: { nombreProducto: 1 } }
+            ],
+            as: "productosConMenosStock"
+        }
+    },
+    { $unwind: "$productosConMenosStock" },
+    {
+        $project: {
+            nombreProducto: "$productosConMenosStock.nombreProducto"
+        }
+    }
+]);
+
+db.cliente.aggregate([
+    {
+        $lookup: {
+            from: "venta",
+            localField: "idCliente", 
+            foreignField: "idClienteFK",
+            as: "ventas"
+        }
+    },
+    {
+        $unwind: "$ventas"
+    },
+    {
+        $match: {
+            "ventas.totalVenta": { $gt: 200 }
+        }
+    },
+    {
+        $project: {
+            nombreCliente: 1
+        }
+    }
+]);
+
+db.producto.aggregate([
+    {
+        $lookup: {
+            from: "venta",
+            localField: "idProducto", 
+            foreignField: "codigoProductoFK",
+            as: "ventas"
+        }
+    },
+    {
+        $match: {
+            "ventas": { $size: 0 } // Filtra los productos que no están en ninguna venta
+        }
+    },
+    {
+        $project: {
+            nombreProducto: 1
+        }
+    }
+]);
